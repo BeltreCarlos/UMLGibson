@@ -27,21 +27,33 @@ public class Editor extends Application {
     public static int sceneWidth = 1024;
     public static int sceneHeight = 640;
    
-    // instance variables
+    // main window
     public Stage stage;
     public BorderPane root;
     public Scene scene;
     public MenuBar menuBar;
+    
+    // tool window
+    public static String toolTitle = "Toolbar";
+    public static int toolWidth = 320;
+    public static int toolHeight = 500;
+    public Stage toolStage;
+    public Scene toolScene;
 
     @Override
     public void start(Stage stage) {
         this.stage = stage;
         this.root = new BorderPane();
-        this.scene = new Scene(this.root, this.sceneWidth, this.sceneHeight);
+        this.scene = new Scene(this.root, Editor.sceneWidth, Editor.sceneHeight);
         
         // title & menu
-        this.stage.setTitle(this.title);
+        this.stage.setTitle(Editor.title);
         this.setMenuBar();
+        
+        // canvas
+        
+        // tool window
+        this.setToolWindow();
         
         // set & show
         this.stage.setScene(this.scene);
@@ -52,7 +64,20 @@ public class Editor extends Application {
         launch(args);
     }
     
-    // set window
+    // set tool window
+    private void setToolWindow(){
+        this.toolStage = new Stage();
+        this.toolStage.setTitle(Editor.title + ": " + Editor.toolTitle);
+        
+        BorderPane bp = new BorderPane();
+        this.toolScene = new Scene(bp, Editor.toolWidth, Editor.toolHeight);
+
+        this.toolStage.setScene(this.toolScene);
+        this.toolStage.setResizable(false);
+        this.toolStage.show();
+    }
+    
+    // set menu bar
     private void setMenuBar(){
         this.menuBar = new MenuBar();
         this.menuBar.prefWidthProperty().bind(this.stage.widthProperty());
@@ -67,37 +92,7 @@ public class Editor extends Application {
 
         fileMenu.getItems().addAll(newMenuItem, saveMenuItem,
             new SeparatorMenuItem(), exitMenuItem);
-
-        Menu webMenu = new Menu("Web");
-        CheckMenuItem htmlMenuItem = new CheckMenuItem("HTML");
-        htmlMenuItem.setSelected(true);
-        webMenu.getItems().add(htmlMenuItem);
-
-        CheckMenuItem cssMenuItem = new CheckMenuItem("CSS");
-        cssMenuItem.setSelected(true);
-        webMenu.getItems().add(cssMenuItem);
-
-        Menu sqlMenu = new Menu("SQL");
-        ToggleGroup tGroup = new ToggleGroup();
-        RadioMenuItem mysqlItem = new RadioMenuItem("MySQL");
-        mysqlItem.setToggleGroup(tGroup);
-
-        RadioMenuItem oracleItem = new RadioMenuItem("Oracle");
-        oracleItem.setToggleGroup(tGroup);
-        oracleItem.setSelected(true);
-
-        sqlMenu.getItems().addAll(mysqlItem, oracleItem,
-            new SeparatorMenuItem());
-
-        Menu tutorialManeu = new Menu("Tutorial");
-        tutorialManeu.getItems().addAll(
-            new CheckMenuItem("Java"),
-            new CheckMenuItem("JavaFX"),
-            new CheckMenuItem("Swing"));
-
-        sqlMenu.getItems().add(tutorialManeu);
-
-        this.menuBar.getMenus().addAll(fileMenu, webMenu, sqlMenu);
+        this.menuBar.getMenus().addAll(fileMenu);
     }
     
 }
