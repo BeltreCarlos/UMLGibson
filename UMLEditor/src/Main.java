@@ -30,12 +30,6 @@ public class Main extends Application {
     }
 
     Stage window;
-    private Pane editPane = new Pane();
-    private TextArea className;
-    private TextArea classMethods;
-    private TextArea classFunctions;
-
-
 
     @Override
     public void start(Stage primaryStage) {
@@ -43,16 +37,19 @@ public class Main extends Application {
         window.setTitle("Test Window");
 
         Classbox box = new Classbox();
+        Classbox box2 = new Classbox();
 
         BorderPane borderPane = new BorderPane();
-        borderPane.setCenter(box);
+//        borderPane.setCenter(box, box2);
+        borderPane.getChildren().addAll(box, box2);
+        //Pane layout = new Pane();
+        //layout.getChildren().addAll(box, box2);
 
         Scene scene = new Scene(borderPane, 600, 550);
+
         window.setScene(scene);
         window.show();
 
     }
-
-
 
 }
