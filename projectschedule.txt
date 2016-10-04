@@ -1,0 +1,26 @@
+Iter1: 10/7/2016
+Iter2: 11/4/2016
+Iter3: 12/2/2016
+
+Carlos B: 
+> Drag/drop functionality
+> Symbols + lines
+> Class box functionality
+> Unit Testing
+
+Leo L.:
+> Toolbox design
+
+Phil L.
+> Application layout/blueprint
+> Source & exe
+
+Joe A.:
+> Documentation
+> QA Testing
+> Some use cases
+> This file itself and genrally logging stuff
+
+Jason K.:
+> Connecting boxes
+> Dynamic arrows and shapes
