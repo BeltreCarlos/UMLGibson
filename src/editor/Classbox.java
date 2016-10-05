@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
- * Created by beltre on 9/21/16.
+ * Created by beltre on 9/21/16, edited by llondon on 10/5/16.
  */
 public class Classbox extends VBox {
 
@@ -24,52 +24,35 @@ public class Classbox extends VBox {
     private TextArea className;
     private TextArea classMethods;
     private TextArea classFunctions;
-    private Button buttonSelect;
+    private Button buttonClass;
     private Button buttonInterface;
     private Button buttonAssociation;
-    private Button button;
 
     public Classbox() {
         super();
 
+        buttonClass = new Button();
+        buttonClass.setText("New Class");
+        
+        buttonInterface = new Button();
+        buttonInterface.setText("New Interface");
+        
+        buttonAssociation = new Button();
+        buttonAssociation.setText("New Association");
         //width = 150.0;
         //height = 200.0;
         width = Editor.toolWidth;
         height = Editor.toolHeight;
+        setPrefWidth(width);
+        setPrefHeight(height);
         
-        anchorCount = 4;
-        anchorPoints = new Point2D[anchorCount];
-        setAnchorPoints(100.0, 100.0);
+        //anchorCount = 4;
+        //anchorPoints = new Point2D[anchorCount];
+        //setAnchorPoints(100.0, 100.0);
 
-        className = new TextArea();
-        className.setPromptText("Name");
-        className.setPrefRowCount(1);
-        className.setPrefColumnCount(10);
-        className.setWrapText(true);
-        className.setEditable(false);
-        className.setMouseTransparent(true);
-
-        classMethods = new TextArea();
-        classMethods.setPromptText("Methods");
-        classMethods.setPrefRowCount(2);
-        classMethods.setPrefColumnCount(10);
-        classMethods.setWrapText(true);
-        classMethods.setEditable(false);
-        classMethods.setMouseTransparent(true);
-        setVgrow(classMethods, Priority.ALWAYS);
-
-        classFunctions = new TextArea();
-        classFunctions.setPromptText("Functions");
-        classFunctions.setPrefRowCount(3);
-        classFunctions.setPrefColumnCount(10);
-        classFunctions.setWrapText(true);
-        classFunctions.setEditable(false);
-        classFunctions.setMouseTransparent(true);
-        setVgrow(classFunctions, Priority.ALWAYS);
-
-        getChildren().addAll(className, classMethods, classFunctions);
-        this.setMaxWidth(width);
-        this.setMaxHeight(height);
+        getChildren().addAll(buttonClass, buttonInterface, buttonAssociation);
+        //this.setMaxWidth(width);
+        //this.setMaxHeight(height);
         this.setStyle("-fx-border-style: solid;" + "-fx-border-width: 1;"
                 + "-fx-border-color: black;");
 
