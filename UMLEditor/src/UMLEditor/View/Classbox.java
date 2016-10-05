@@ -38,7 +38,7 @@ public class Classbox extends VBox {
         className.setPrefRowCount(1);
         className.setPrefColumnCount(10);
         className.setWrapText(true);
-        className.setEditable(false);
+        //className.setEditable(false);
         className.setMouseTransparent(true);
 
         classMethods = new TextArea();
@@ -63,7 +63,7 @@ public class Classbox extends VBox {
         this.setMaxWidth(width);
         this.setMaxHeight(height);
         this.setStyle("-fx-border-style: solid;" + "-fx-border-width: 1;"
-                + "-fx-border-color: black;");
+                + "-fx-border-color: red;");
 
         //Events
         this.setOnMousePressed(e -> {
