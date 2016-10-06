@@ -1,4 +1,0 @@
-Carlos B:
-> Drag/drop functionality -- 4hrs
-> Symbols + lines -- 2hrs
-> Class box functionality -- 4hrs
