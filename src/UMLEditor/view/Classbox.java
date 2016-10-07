@@ -38,7 +38,7 @@ public class Classbox extends VBox {
         className.setPrefRowCount(1);
         className.setPrefColumnCount(10);
         className.setWrapText(true);
-        //className.setEditable(false);
+        className.setEditable(false);
         className.setMouseTransparent(true);
 
         classMethods = new TextArea();

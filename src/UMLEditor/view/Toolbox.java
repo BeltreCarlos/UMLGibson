@@ -1,15 +1,9 @@
-package editor;
+package UMLEditor.view;
 
-import javafx.geometry.Insets;
+import UMLEditor.Main;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class Toolbox { 
