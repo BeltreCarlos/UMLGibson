@@ -6,11 +6,11 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 
-public class Toolbox { 
+public class Toolbox {
     // static variables
     public static String title = "Toolbox";
-    public static double width = 320;
-    public static double height = 500;
+    public static double width = 200;
+    public static double height = 300;
     public static double widthPadding = 10;
     
     // parent instance
@@ -46,16 +46,17 @@ public class Toolbox {
         this.layout = new VBox();
         this.layout.setStyle(Main.style.bgColor);
     }
+    Toolbox_Button classButton = new Toolbox_Button("Classbox");
+    Toolbox_Button genButton = new Toolbox_Button("Generalization");
+    Toolbox_Button impButton = new Toolbox_Button("Implements");
+    Toolbox_Button assocButton = new Toolbox_Button("Association");
+    Toolbox_Button aggrButton = new Toolbox_Button("Aggregation");
+    Toolbox_Button compButton = new Toolbox_Button("Composition");
+    Toolbox_Button dependButton = new Toolbox_Button("Dependency");
+
     private void setButtons(){
-        this.layout.getChildren().addAll(
-            new Toolbox_Button("Class"), 
-            new Toolbox_Button("Generalization"), 
-            new Toolbox_Button("Implements"),
-            new Toolbox_Button("Association"),
-            new Toolbox_Button("Aggregation"),
-            new Toolbox_Button("Composition"),
-            new Toolbox_Button("Dependency")
-        );
+        this.layout.getChildren().addAll(classButton, genButton, impButton, assocButton,
+                aggrButton, compButton, dependButton);
     }
     private void setPosition(){
         this.xPos = main.stage.getX() - Toolbox.width - Toolbox.widthPadding;
@@ -72,8 +73,8 @@ public class Toolbox {
             this.setSize();
         }
         private void setSize(){
-            this.setMaxWidth(Toolbox.width/3);
-            this.setMaxHeight(Toolbox.width/3);
+            this.setMaxWidth(Toolbox.width);
+            this.setMinHeight(30);
         }
     }
     

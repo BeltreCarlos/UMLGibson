@@ -1,6 +1,6 @@
 package UMLEditor;
 
-import UMLEditor.view.Display;
+//import UMLEditor.view.Display;
 import UMLEditor.view.Menu;
 import UMLEditor.view.Toolbox;
 //import editor.*;
