@@ -6,11 +6,12 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 
+
 public class Toolbox {
     // static variables
     public static String title = "Toolbox";
     public static double width = 200;
-    public static double height = 300;
+    public static double height = 250;
     public static double widthPadding = 10;
     
     // parent instance
@@ -71,6 +72,8 @@ public class Toolbox {
             super(label);
             this.label = label;
             this.setSize();
+            this.setId("toolButtons");
+            this.getStylesheets().add("UMLEditor/resources/styles.css");
         }
         private void setSize(){
             this.setMaxWidth(Toolbox.width);
