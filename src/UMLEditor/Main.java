@@ -1,6 +1,6 @@
 package UMLEditor;
 
-import UMLEditor.view.Display;
+//import UMLEditor.view.Display;
 import UMLEditor.view.Menu;
 import UMLEditor.view.Toolbox;
 //import editor.*;
@@ -19,9 +19,9 @@ import UMLEditor.view.Menu;
 public class Main extends Application {
 
     // static variables
-    public static String title = "UML Editor";
-    public static int width = 1024;
-    public static int height = 640;
+    private static String title = "UML Editor";
+    private static int width = 1024;
+    private static int height = 640;
     //public static Display display = new Display();
     public static Style style = new Style();
 
@@ -32,12 +32,13 @@ public class Main extends Application {
     public Scene scene;
 
     // visual classes
-    public Menu menu;
-    public Toolbox toolbox;
+    private Menu menu;
+    private Toolbox toolbox;
 
     public static void main(String[] args) {
         launch(args);
     }
+
     @Override
     public void start(Stage primaryStage) {
         this.stage = primaryStage;
@@ -68,6 +69,7 @@ public class Main extends Application {
         this.pane.setStyle(style.bgColor);
         this.layout.setCenter(this.pane);
     }
+
     private void initMenu(){
         this.menu = new Menu(this);
     }

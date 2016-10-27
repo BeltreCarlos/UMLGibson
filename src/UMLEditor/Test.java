@@ -13,7 +13,7 @@ public class Test {
         button.setTranslateX(400.0);
         button.setTranslateY(0.0);
         button.setMinWidth(100.0);
-        button.setMinHeight(50.0);
+        button.setMinHeight(15.0);
         button.setText("Edit");
 
         return button;
@@ -24,7 +24,7 @@ public class Test {
         selectButton.setTranslateX(300.0);
         selectButton.setTranslateY(0.0);
         selectButton.setMinWidth(100.0);
-        selectButton.setMinHeight(50.0);
+        selectButton.setMinHeight(15.0);
         selectButton.setText("Select");
 
         return selectButton;
