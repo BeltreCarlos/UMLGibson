@@ -23,7 +23,7 @@ public class Menu {
         
         this.bar = new javafx.scene.control.MenuBar();
         this.bar.prefWidthProperty().bind(this.main.stage.widthProperty());
-        
+
         //main.bp.setTop(this.bar);
         this.main.layout.setTop(this.bar);
 
@@ -36,7 +36,6 @@ public class Menu {
         
         javafx.scene.control.Menu toolMenu = new javafx.scene.control.Menu("Tools");
         javafx.scene.control.MenuItem toggleTools = new javafx.scene.control.MenuItem("Toggle toolbox");
-        //exitMenuItem.setOnAction(actionEvent -> Platfo
 
         fileMenu.getItems().addAll(newMenuItem, saveMenuItem,
         new SeparatorMenuItem(), exitMenuItem);
