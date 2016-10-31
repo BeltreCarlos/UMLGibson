@@ -1,6 +1,8 @@
 package UMLEditor;
 
-//import UMLEditor.view.Display;
+import UMLEditor.controller.UmlController;
+import UMLEditor.model.UmlModel;
+import UMLEditor.view.Display;
 import UMLEditor.view.Menu;
 import UMLEditor.view.Toolbox;
 //import editor.*;
@@ -12,6 +14,9 @@ import javafx.stage.Stage;
 import javafx.scene.layout.Pane;
 import UMLEditor.view.Classbox;
 import UMLEditor.view.Menu;
+import javafx.event.EventHandler;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 
 /**
  * Created by beltre on 9/21/16.
@@ -19,11 +24,15 @@ import UMLEditor.view.Menu;
 public class Main extends Application {
 
     // static variables
-    private static String title = "UML Editor";
-    private static int width = 1024;
-    private static int height = 640;
+    public static String title = "UML Editor";
+    public static int width = 1024;
+    public static int height = 640;
     //public static Display display = new Display();
     public static Style style = new Style();
+
+    // controller
+    public UmlController controller;
+    public UmlModel model;
 
     // instance variables
     public Stage stage;
@@ -32,13 +41,12 @@ public class Main extends Application {
     public Scene scene;
 
     // visual classes
-    private Menu menu;
-    private Toolbox toolbox;
+    public Menu menu;
+    public Toolbox toolbox;
 
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
     public void start(Stage primaryStage) {
         this.stage = primaryStage;
@@ -50,13 +58,24 @@ public class Main extends Application {
         this.initMenu();
 
         // classboxes
+        /*
         Classbox box = new Classbox();
         Classbox box2 = new Classbox();
         Test buttons = new Test();
         this.pane.getChildren().addAll(box, box2, buttons.createEditButton(), buttons.createSelectButton());
+        */
+
+        // scene
+        this.scene = new Scene(this.layout, UMLEditor.Main.width, UMLEditor.Main.height);
+
+        // controller
+        this.controller = new UmlController(this);
+        this.controller.initEvents();
+
+        // model
+        this.model = new UmlModel(this);
 
         // set & show
-        this.scene = new Scene(this.layout, UMLEditor.Main.width, UMLEditor.Main.height);
         this.stage.setScene(this.scene);
         this.stage.show();
 
@@ -69,7 +88,6 @@ public class Main extends Application {
         this.pane.setStyle(style.bgColor);
         this.layout.setCenter(this.pane);
     }
-
     private void initMenu(){
         this.menu = new Menu(this);
     }

@@ -62,7 +62,7 @@ public interface Anchors {
      * @param line
      *            Adds a UMLLine line to Lines.
      */
-    public void addLine(UMLLine line);
+    //public void addLine(UMLLine line);
 
     /**
      *

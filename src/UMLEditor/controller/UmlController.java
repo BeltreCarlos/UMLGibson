@@ -1,5 +1,6 @@
 package UMLEditor.controller;
 
+import UMLEditor.Main;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import UMLEditor.view.*;
@@ -9,15 +10,67 @@ import UMLEditor.view.*;
  */
 public class UmlController {
 
-    UmlView view = new UmlView();
 
-    private void setClassBox() {
-        EventHandler<MouseEvent> createClassBox = (event) -> {
-            double x = event.getX();
-            double y = event.getY();
-            //System.out.println("You created a ClassBox at " + x + " , " + y);
-            //view.getEditPane().getChildren().add(new ClassBox(x, y));
-        };
+    // parent instance
+    private final Main main;
+
+    // action
+    String item = null;
+
+    public UmlController(Main main){
+        this.main = main;
     }
 
+    public void setDraw(String item){
+        /* sets what item to draw next */
+        this.item = item;
+    }
+
+    public void initEvents(){
+        UmlController self = this;
+        this.main.pane.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //System.out.println("mouse click detected! " + mouseEvent.getSource());
+                self.draw();
+            }
+        });
+    }
+
+    // called on click
+    public void draw(){
+        if(this.item != null){
+            switch(this.item){
+                case "class":
+                    this.drawClass();
+                    break;
+                default:
+                    // do nothing
+            }
+        }
+        this.item = null;
+    }
+
+    // specific draw methods
+    public void drawClass(){
+        Classbox box = new Classbox();
+
+        // model
+        this.main.model.addClass(box);
+
+        // view
+        this.main.pane.getChildren().addAll(box);
+    }
+//==================================================================================================================
+//    UmlView view = new UmlView();
+//
+//    private void setClassBox() {
+//        EventHandler<MouseEvent> createClassBox = (event) -> {
+//            double x = event.getX();
+//            double y = event.getY();
+//            //System.out.println("You created a ClassBox at " + x + " , " + y);
+//            //view.getEditPane().getChildren().add(new ClassBox(x, y));
+//        };
+//    }
+//==================================================================================================================
 }
