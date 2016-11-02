@@ -22,7 +22,7 @@ public class UmlController {
     }
 
     public void setDraw(String item){
-        /* sets what item to draw next */
+        /* sets what item teo draw next */
         this.item = item;
     }
 
