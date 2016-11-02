@@ -1,6 +1,7 @@
 package UMLEditor.view;
 
 import UMLEditor.Main;
+import UMLEditor.view.Images;
 import UMLEditor.model.State;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,15 +9,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
+import jdk.internal.org.objectweb.asm.util.TraceAnnotationVisitor;
 
 
 public class Toolbox {
 
     // static variables
     public static String title = "Toolbox";
-    public static double width = 200;
+    public static double width = 100;
     public static double height = 230;
     public static double widthPadding = 10;
 
@@ -34,7 +38,13 @@ public class Toolbox {
     public int spacing = 0;
 
     // buttons
-    public Toolbox_Button classBtn;
+    private Toolbox_Button classBtn = new Toolbox_Button();
+//    private Toolbox_Button genBtn = new Toolbox_Button("Generalization");
+//    private Toolbox_Button impBtn = new Toolbox_Button("Implements");
+//    private Toolbox_Button asscBtn = new Toolbox_Button("Association");
+//    private Toolbox_Button aggrBtn = new Toolbox_Button("Aggregation");
+//    private Toolbox_Button compBtn = new Toolbox_Button("Composition");
+//    private Toolbox_Button dependBtn = new Toolbox_Button("Dependency");
 
     public Toolbox(Main main) {
         this.main = main;
@@ -62,7 +72,12 @@ public class Toolbox {
         Main main = this.main; // aliased
 
         // class button
-        this.classBtn = new Toolbox_Button("Class");
+        Images test = new Images();
+        ImageView img = new ImageView(test.aggregation());
+        img.setFitHeight(40.0);
+        img.setPreserveRatio(true);
+        classBtn.setGraphic(img);
+
         this.classBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -71,15 +86,7 @@ public class Toolbox {
             }
         });
 
-        this.layout.getChildren().addAll(
-                this.classBtn,
-                new Toolbox_Button("Generalization"),
-                new Toolbox_Button("Implements"),
-                new Toolbox_Button("Association"),
-                new Toolbox_Button("Aggregation"),
-                new Toolbox_Button("Composition"),
-                new Toolbox_Button("Dependency")
-        );
+        this.layout.getChildren().addAll(classBtn);
     }
 
     private void setPosition() {
@@ -90,107 +97,15 @@ public class Toolbox {
     }
 
     public class Toolbox_Button extends Button {
-        public String label;
 
-        public Toolbox_Button(String label) {
-            super(label);
+        public Toolbox_Button() {
+            super();
             this.setMinWidth(Toolbox.width);
             this.setMinHeight(30);
             this.setId("toolButtons");
             this.getStylesheets().add("UMLEditor/resources/styles.css");
         }
-//    // static variables
-//    public static double width = 200;
-//    public static double height = 230;
-//    public static double widthPadding = 10;
-//    private ToggleGroup stateToggle = new ToggleGroup();
-//
-//    // parent instance
-//    private final Main main;
-//
-//    // position
-//    private double yPos;
-//    private double xPos;
-//
-//    // layout
-//    private Stage stage;
-//    private Scene scene;
-//    private VBox layout;
-//    public int spacing = 0;
-//
-//    public Toolbox(Main main){
-//        this.main = main;
-//        this.stage = new Stage();
-//
-//        // layout
-//        this.setLayout();
-//        this.setButtons();
-//
-//        // set & show
-//        this.scene = new Scene(this.layout, Toolbox.width, Toolbox.height);
-//        this.stage.setScene(this.scene);
-//        this.stage.setResizable(false);
-//        this.stage.setTitle("Toolbox");
-//        this.setPosition();
-//        this.stage.show();
-//    }
-//
-//    private void setLayout(){
-//        this.layout = new VBox();
-//        this.layout.setStyle(Main.style.bgColor);
-//    }
-//
-//    private void setButtons(){
-//        Toolbox_Button classButton = new Toolbox_Button("Classbox");
-//        classButton.setUserData(State.CLASSBOX);
-//        classButton.setToggleGroup(stateToggle);
-//
-//        Toolbox_Button genButton = new Toolbox_Button("Generalization");
-//        genButton.setUserData(State.GENERALIZATION);
-//        classButton.setToggleGroup(stateToggle);
-//
-//        Toolbox_Button impButton = new Toolbox_Button("Implements");
-//        genButton.setUserData(State.IMPLEMENTS);
-//        classButton.setToggleGroup(stateToggle);
-//
-//        Toolbox_Button assocButton = new Toolbox_Button("Association");
-//        genButton.setUserData(State.ASSOCIATION);
-//        classButton.setToggleGroup(stateToggle);
-//
-//        Toolbox_Button aggrButton = new Toolbox_Button("Aggregation");
-//        genButton.setUserData(State.AGGREGATION);
-//        classButton.setToggleGroup(stateToggle);
-//
-//        Toolbox_Button compButton = new Toolbox_Button("Composition");
-//        genButton.setUserData(State.COMPOSITION);
-//        classButton.setToggleGroup(stateToggle);
-//
-//        Toolbox_Button dependButton = new Toolbox_Button("Dependency");
-//        genButton.setUserData(State.DEPENDENCY);
-//        classButton.setToggleGroup(stateToggle);
-//
-//        this.layout.getChildren().addAll(classButton, genButton, impButton, assocButton,
-//                aggrButton, compButton, dependButton);
-//    }
-//
-//    private void setPosition(){
-//        this.xPos = main.stage.getX() - Toolbox.width - Toolbox.widthPadding;
-//        this.yPos = main.stage.getY();
-//        this.stage.setX(this.xPos);
-//        this.stage.setY(this.yPos);
-//    }
-//
-//    public class Toolbox_Button extends ToggleButton{
-//
-//        public Toolbox_Button(String label){
-//            super(label);
-//            this.setMinWidth(Toolbox.width);
-//            this.setMinHeight(30);
-//            this.setId("toolButtons");
-//            this.getStylesheets().add("UMLEditor/resources/styles.css");
-//        }
-//    }
-
     }
+
 }
 

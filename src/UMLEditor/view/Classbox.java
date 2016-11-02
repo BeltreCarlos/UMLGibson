@@ -62,8 +62,8 @@ public class Classbox extends VBox {
         getChildren().addAll(className, classMethods, classFunctions);
         this.setMaxWidth(width);
         this.setMaxHeight(height);
-        this.setStyle("-fx-border-style: solid;" + "-fx-border-width: 1;"
-                + "-fx-border-color: red;");
+//        this.setStyle("-fx-border-style: solid;" + "-fx-border-width: 1;"
+//                + "-fx-border-color: red;");
 
         //Events
         this.setOnMousePressed(e -> {
