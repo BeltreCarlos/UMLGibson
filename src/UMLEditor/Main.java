@@ -2,6 +2,7 @@ package UMLEditor;
 
 import UMLEditor.controller.UmlController;
 import UMLEditor.model.UmlModel;
+import UMLEditor.view.UmlView;
 import UMLEditor.view.Display;
 import UMLEditor.view.Menu;
 import UMLEditor.view.Toolbox;
@@ -34,6 +35,7 @@ public class Main extends Application {
     // controller
     public UmlController controller;
     public UmlModel model;
+    private UmlView view;
 
     // instance variables
     public Stage stage;
@@ -58,16 +60,8 @@ public class Main extends Application {
         // menu
         initMenu();
 
-        // classboxes
-        /*
-        Classbox box = new Classbox();
-        Classbox box2 = new Classbox();
-        Test buttons = new Test();
-        pane.getChildren().addAll(box, box2, buttons.createEditButton(), buttons.createSelectButton());
-        */
-
         // scene
-        scene = new Scene(layout, UMLEditor.Main.width, UMLEditor.Main.height, Color.RED);
+        scene = new Scene(layout, UMLEditor.Main.width, UMLEditor.Main.height);
 
         // controller
         controller = new UmlController(this);
@@ -82,6 +76,7 @@ public class Main extends Application {
 
         // toolbox
         initToolbox(); // must do after showing main stage
+
     }
     private void setLayout(){
         layout = new BorderPane();

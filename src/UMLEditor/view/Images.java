@@ -16,7 +16,7 @@ public class Images {
 
     public Images() {
         //public Image aggregation(){ return this.aggregation;}
-        System.out.println(aggregation.getHeight() + " " + aggregation.getWidth());
+        //System.out.println(aggregation.getHeight() + " " + aggregation.getWidth());
     }
 
     public Image aggregation(){

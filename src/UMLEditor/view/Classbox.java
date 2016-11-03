@@ -1,6 +1,8 @@
 package UMLEditor.view;
 
 import java.util.ArrayList;
+
+import javafx.scene.Cursor;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -13,7 +15,7 @@ import javafx.stage.Stage;
 /**
  * Created by beltre on 9/21/16.
  */
-public class Classbox extends VBox {
+public class Classbox extends VBox implements Anchors {
 
     private double orgX, orgY;
     private double height, width;
@@ -24,14 +26,17 @@ public class Classbox extends VBox {
     private TextArea classMethods;
     private TextArea classFunctions;
 
-    public Classbox() {
+    public Classbox(double x, double y) {
         super();
 
         width = 150.0;
         height = 200.0;
         anchorCount = 4;
         anchorPoints = new Point2D[anchorCount];
-        setAnchorPoints(100.0, 100.0);
+        setCursor(Cursor.OPEN_HAND);
+        setAnchorPoints(x, y);
+        setTranslateX(x);
+        setTranslateY(y);
 
         className = new TextArea();
         className.setPromptText("Name");

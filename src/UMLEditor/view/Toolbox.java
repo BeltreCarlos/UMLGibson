@@ -82,11 +82,15 @@ public class Toolbox {
             @Override
             public void handle(ActionEvent event) {
                 main.controller.setDraw("class");
-                System.out.println("Hello World!");
+                //System.out.println("Hello World!");
             }
         });
 
         this.layout.getChildren().addAll(classBtn);
+    }
+
+    public void createToolbox(){
+
     }
 
     private void setPosition() {

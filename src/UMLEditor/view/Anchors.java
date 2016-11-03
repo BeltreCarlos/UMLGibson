@@ -25,7 +25,7 @@ public interface Anchors {
      *            The x position that will be used to update the x position of
      *            the anchor points.
      */
-    void updateXAnchorPoints(double x);
+    void updateXAnchors(double x);
 
     /**
      *
@@ -33,7 +33,7 @@ public interface Anchors {
      *            The y position to be used to calculate the y position of the
      *            anchor points.
      */
-    void updateYAnchorPoints(double y);
+    void updateYAnchors(double y);
 
     /**
      *
@@ -47,7 +47,7 @@ public interface Anchors {
      *
      * @return Returns how many anchor points this box has
      */
-    int getAnchorCount();
+    //int getAnchorCount();
 
     /**
      *
@@ -55,7 +55,7 @@ public interface Anchors {
      *            The enum that signifies whether this lineType is a startPoint
      *            or endPoint.
      */
-    public void addLineType(LineType str);
+    //public void addLineType(LineType str);
 
     /**
      *
@@ -70,5 +70,5 @@ public interface Anchors {
      *            The unique id of the line to determine which line needs to be
      *            deleted.
      */
-    public void deleteLine(int id);
+    //public void deleteLine(int id);
 }

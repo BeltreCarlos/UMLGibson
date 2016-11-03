@@ -53,14 +53,26 @@ public class UmlController {
 
     // specific draw methods
     public void drawClass(){
-        Classbox box = new Classbox();
+        EventHandler<MouseEvent> createClassBox = (event) -> {
+            double x = event.getX();
+            double y = event.getY();
+
+            Classbox box = new Classbox(x,y);
+            this.main.pane.getChildren().addAll(box);
+            this.main.model.addClass(box);
+        };
+        //this.main.model.addClass(createClassBox);
+
+        this.main.pane.setOnMouseClicked(createClassBox);
+        //Classbox box = new Classbox();
 
         // model
-        this.main.model.addClass(box);
+        //this.main.model.addClass(box);
 
         // view
-        this.main.pane.getChildren().addAll(box);
+        //this.main.pane.getChildren().addAll(box);
     }
+
 //==================================================================================================================
 //    UmlView view = new UmlView();
 //
