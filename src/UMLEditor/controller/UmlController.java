@@ -17,16 +17,16 @@ public class UmlController {
     // action
     String item = null;
 
-    public UmlController(Main main){
+    public UmlController(Main main) {
         this.main = main;
     }
 
-    public void setDraw(String item){
+    public void setDraw(String item) {
         /* sets what item teo draw next */
         this.item = item;
     }
 
-    public void initEvents(){
+    public void initEvents() {
         UmlController self = this;
         this.main.pane.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
@@ -38,9 +38,9 @@ public class UmlController {
     }
 
     // called on click
-    public void draw(){
-        if(this.item != null){
-            switch(this.item){
+    public void draw() {
+        if (this.item != null) {
+            switch (this.item) {
                 case "class":
                     this.drawClass();
                     break;
@@ -52,12 +52,12 @@ public class UmlController {
     }
 
     // specific draw methods
-    public void drawClass(){
+    public void drawClass() {
         EventHandler<MouseEvent> createClassBox = (event) -> {
             double x = event.getX();
             double y = event.getY();
 
-            Classbox box = new Classbox(x,y);
+            Classbox box = new Classbox(x, y);
             this.main.pane.getChildren().addAll(box);
             this.main.model.addClass(box);
         };
@@ -72,17 +72,4 @@ public class UmlController {
         // view
         //this.main.pane.getChildren().addAll(box);
     }
-
-//==================================================================================================================
-//    UmlView view = new UmlView();
-//
-//    private void setClassBox() {
-//        EventHandler<MouseEvent> createClassBox = (event) -> {
-//            double x = event.getX();
-//            double y = event.getY();
-//            //System.out.println("You created a ClassBox at " + x + " , " + y);
-//            //view.getEditPane().getChildren().add(new ClassBox(x, y));
-//        };
-//    }
-//==================================================================================================================
 }

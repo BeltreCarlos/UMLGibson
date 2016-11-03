@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
  * Created by beltre on 11/2/16.
  */
 public class Images {
-    private final Image aggregation = new Image(getClass().getResourceAsStream("images/Aggregation.png"));
+    private final Image aggregation = new Image(getClass().getResourceAsStream("images/Classbox.png"));
 //    private final Image association = new Image(getClass().getResourceAsStream("/resources/images/Association.png"));
 //    private final Image classbox = new Image(getClass().getResourceAsStream("/resources/images/Classbox.png"));
 //    private final Image composition = new Image(getClass().getResourceAsStream("/resources/images/Aggregation.png"));
