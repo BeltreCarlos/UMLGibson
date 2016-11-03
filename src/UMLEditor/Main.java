@@ -2,6 +2,7 @@ package UMLEditor;
 
 import UMLEditor.controller.UmlController;
 import UMLEditor.model.UmlModel;
+import UMLEditor.view.UmlView;
 import UMLEditor.view.Display;
 import UMLEditor.view.Menu;
 import UMLEditor.view.Toolbox;
@@ -9,6 +10,7 @@ import UMLEditor.view.Toolbox;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 //import UMLEditor.Controller.Controller;
 import javafx.scene.layout.Pane;
@@ -33,6 +35,7 @@ public class Main extends Application {
     // controller
     public UmlController controller;
     public UmlModel model;
+    private UmlView view;
 
     // instance variables
     public Stage stage;
@@ -49,50 +52,43 @@ public class Main extends Application {
     }
     @Override
     public void start(Stage primaryStage) {
-        this.stage = primaryStage;
-        this.stage.setTitle(UMLEditor.Main.title);
+        stage = primaryStage;
+        stage.setTitle(UMLEditor.Main.title);
 
         // layout
-        this.setLayout();
+        setLayout();
         // menu
-        this.initMenu();
-
-        // classboxes
-        /*
-        Classbox box = new Classbox();
-        Classbox box2 = new Classbox();
-        Test buttons = new Test();
-        this.pane.getChildren().addAll(box, box2, buttons.createEditButton(), buttons.createSelectButton());
-        */
+        initMenu();
 
         // scene
-        this.scene = new Scene(this.layout, UMLEditor.Main.width, UMLEditor.Main.height);
+        scene = new Scene(layout, UMLEditor.Main.width, UMLEditor.Main.height);
 
         // controller
-        this.controller = new UmlController(this);
-        this.controller.initEvents();
+        controller = new UmlController(this);
+        controller.initEvents();
 
         // model
-        this.model = new UmlModel(this);
+        model = new UmlModel(this);
 
         // set & show
-        this.stage.setScene(this.scene);
-        this.stage.show();
+        stage.setScene(scene);
+        stage.show();
 
         // toolbox
-        this.initToolbox(); // must do after showing main stage
+        initToolbox(); // must do after showing main stage
+
     }
     private void setLayout(){
-        this.layout = new BorderPane();
-        this.pane = new Pane();
-        this.pane.setStyle(style.bgColor);
-        this.layout.setCenter(this.pane);
+        layout = new BorderPane();
+        pane = new Pane();
+        pane.setStyle(style.bgColor);
+        layout.setCenter(pane);
     }
     private void initMenu(){
-        this.menu = new Menu(this);
+        menu = new Menu(this);
     }
     private void initToolbox(){
-        this.toolbox = new Toolbox(this);
+        toolbox = new Toolbox(this);
     }
 
 }
