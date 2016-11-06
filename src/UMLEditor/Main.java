@@ -68,7 +68,7 @@ public class Main extends Application {
         controller.initEvents();
 
         // model
-        model = new UmlModel(this);
+        //model = new UmlModel(this);
 
         // set & show
         stage.setScene(scene);

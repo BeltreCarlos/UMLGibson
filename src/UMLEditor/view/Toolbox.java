@@ -1,6 +1,7 @@
 package UMLEditor.view;
 
 import UMLEditor.Main;
+import javafx.scene.control.Tooltip;
 import UMLEditor.view.Images;
 import UMLEditor.model.State;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -19,6 +21,7 @@ import jdk.internal.org.objectweb.asm.util.TraceAnnotationVisitor;
 public class Toolbox {
 
     // static variables
+    private ToggleGroup stateToggle = new ToggleGroup();
     public static String title = "Toolbox";
     public static double width = 100;
     public static double height = 230;
@@ -54,6 +57,7 @@ public class Toolbox {
         // layout
         this.setLayout();
         this.setButtons();
+        classBtn.setUserData(State.CLASSBOX);
 
         // set & show
         this.scene = new Scene(this.layout, Toolbox.width, Toolbox.height);
@@ -71,12 +75,14 @@ public class Toolbox {
     private void setButtons() {
         Main main = this.main; // aliased
 
-        // class button
+        // Button images and functionality
         Images test = new Images();
-        ImageView img = new ImageView(test.aggregation());
+        ImageView img = new ImageView(test.classbox());
         img.setFitHeight(40.0);
         img.setPreserveRatio(true);
         classBtn.setGraphic(img);
+        classBtn.setTooltip(new Tooltip("ClassBox"));
+
 
         this.classBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -100,6 +106,7 @@ public class Toolbox {
         this.stage.setY(this.yPos);
     }
 
+
     public class Toolbox_Button extends Button {
 
         public Toolbox_Button() {
@@ -110,6 +117,7 @@ public class Toolbox {
             this.getStylesheets().add("UMLEditor/resources/styles.css");
         }
     }
+
 
 }
 
