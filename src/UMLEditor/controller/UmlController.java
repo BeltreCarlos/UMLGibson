@@ -64,12 +64,6 @@ public class UmlController {
         //this.main.model.addClass(createClassBox);
 
         this.main.pane.setOnMouseClicked(createClassBox);
-        //Classbox box = new Classbox();
 
-        // model
-        //this.main.model.addClass(box);
-
-        // view
-        //this.main.pane.getChildren().addAll(box);
     }
 }

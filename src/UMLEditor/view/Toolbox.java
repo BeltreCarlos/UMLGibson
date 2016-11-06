@@ -42,6 +42,7 @@ public class Toolbox {
 
     // buttons
     private Toolbox_Button classBtn = new Toolbox_Button();
+    private Toolbox_Button selectBtn = new Toolbox_Button();
 //    private Toolbox_Button genBtn = new Toolbox_Button("Generalization");
 //    private Toolbox_Button impBtn = new Toolbox_Button("Implements");
 //    private Toolbox_Button asscBtn = new Toolbox_Button("Association");
@@ -76,12 +77,22 @@ public class Toolbox {
         Main main = this.main; // aliased
 
         // Button images and functionality
-        Images test = new Images();
-        ImageView img = new ImageView(test.classbox());
-        img.setFitHeight(40.0);
-        img.setPreserveRatio(true);
-        classBtn.setGraphic(img);
+        Images img = new Images();
+        ImageView classImg = new ImageView(img.getClassbox());
+//        ImageView aggrImg = new ImageView(img.getAggregation());
+//        ImageView asscImg = new ImageView(img.getAssociation());
+//        ImageView compImg = new ImageView(img.getComposition());
+//        ImageView depImg = new ImageView(img.getDependency());
+//        ImageView genImg = new ImageView(img.getGeneralization());
+//        ImageView impImg = new ImageView(img.getImplementation());
+
+
+        classImg.setFitHeight(40.0);
+        classImg.setPreserveRatio(true);
+        classBtn.setGraphic(classImg);
         classBtn.setTooltip(new Tooltip("ClassBox"));
+
+        selectBtn.setText("Select");
 
 
         this.classBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -92,12 +103,9 @@ public class Toolbox {
             }
         });
 
-        this.layout.getChildren().addAll(classBtn);
+        this.layout.getChildren().addAll(classBtn, selectBtn);
     }
 
-    public void createToolbox(){
-
-    }
 
     private void setPosition() {
         this.xPos = main.stage.getX() - Toolbox.width - Toolbox.widthPadding;
