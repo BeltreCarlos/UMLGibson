@@ -7,17 +7,18 @@ package UMLEditor;
 
 public class Style {
     // static fx
-    private static final String background_color_label = "-fx-background-color";
-    private static final String link = ": ";
-    
+    private static final String background_color_label = "-fx-background-color: ";
+    //private static final String link = ": ";
     // configurable
-    private static final String background_color = "dddddd";
+    private static final String background_color = "#34495E";
     
     // external useage
     public String bgColor;
+
     
     public Style(){
-        this.bgColor = Style.background_color_label + Style.link + Style.background_color;
+
+        this.bgColor = Style.background_color_label + Style.background_color;
     }
 
 }

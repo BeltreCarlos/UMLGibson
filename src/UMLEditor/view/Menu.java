@@ -22,7 +22,8 @@ public class Menu {
         this.main = main;
         
         this.bar = new javafx.scene.control.MenuBar();
-        this.bar.prefWidthProperty().bind(this.main.stage.widthProperty());
+        //this.bar.prefWidthProperty().bind(this.main.stage.widthProperty());
+        bar.useSystemMenuBarProperty().set(true);
 
         //main.bp.setTop(this.bar);
         this.main.layout.setTop(this.bar);
