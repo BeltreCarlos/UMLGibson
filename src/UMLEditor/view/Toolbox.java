@@ -38,8 +38,7 @@ public class Toolbox {
     public Toolbox(Main main) {
         this.main = main;
         this.stage = new Stage();
-        this.stage.setTitle(Main.title + ": " + Toolbox.title);
-        this.layout = createToolboxButtons();
+        layout = createToolboxButtons();
 
         // set & show
         this.scene = new Scene(this.layout, Toolbox.width, Toolbox.height);
@@ -86,17 +85,6 @@ public class Toolbox {
         return stateToggle;
     }
 
-
-    public class Toolbox_Button extends ToggleButton {
-
-        public Toolbox_Button() {
-            super();
-            this.setMinWidth(Toolbox.width);
-            this.setMinHeight(30);
-            this.setId("toolButtons");
-            this.getStylesheets().add("UMLEditor/resources/styles.css");
-        }
-    }
 
 
 }

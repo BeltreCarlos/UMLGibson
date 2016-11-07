@@ -2,6 +2,7 @@ package UMLEditor.view;
 
 import UMLEditor.Main;
 import javafx.geometry.Insets;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
@@ -24,5 +25,6 @@ public class UmlView extends BorderPane {
     public Pane getEditPane() {
         return editPane;
     }
+
 
 }

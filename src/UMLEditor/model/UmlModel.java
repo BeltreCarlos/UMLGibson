@@ -12,21 +12,14 @@ import java.util.ArrayList;
  */
 public class UmlModel {
 
-    // parent instance
-    //private final Main main;
-
     private SimpleObjectProperty<State> state;
     private SimpleObjectProperty<Node> currentlySelectedNode;
-
-    // lists of items
-    ArrayList<Classbox> classboxList = new ArrayList<>();
 
     public UmlModel(){
         this.state = new SimpleObjectProperty();
         state.setValue(State.SELECT);
 
         this.currentlySelectedNode = new SimpleObjectProperty();
-        //this.main = main;
     }
 
     public void setState(State s){
@@ -40,38 +33,6 @@ public class UmlModel {
     public SimpleObjectProperty<Node> getCurrentlySelectedNodeProperty(){
         return currentlySelectedNode;
     }
-
-    public void addClass(Classbox box){
-        this.classboxList.add(box);
-        //System.out.println(box.orgX);
-    }
-//================================================================================================================
-//    private SimpleObjectProperty<State> state;
-//    private SimpleObjectProperty<Node> currentlySelectedNode;
-//
-//    public UmlModel(){
-//        this.state = new SimpleObjectProperty();
-//        state.setValue(State.SELECT);
-//
-//
-//        this.currentlySelectedNode = new SimpleObjectProperty();
-//
-//
-//    }
-//
-//    public void setState(State s){
-//        this.state.setValue(s);
-//    }
-//
-//    public SimpleObjectProperty<State> getStateProperty(){
-//        return state;
-//    }
-//
-//    public SimpleObjectProperty<Node> getCurrentlySelectedNodeProperty(){
-//        return currentlySelectedNode;
-//    }
-
-//================================================================================================================
 
 
 }
