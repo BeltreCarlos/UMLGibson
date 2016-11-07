@@ -47,6 +47,38 @@ public class UmlController {
                             setClassBoxState();
                             break;
 
+                        case ASSOCIATION:
+                            model.setState(State.ASSOCIATION);
+                            break;
+
+                        case LINE:
+                            model.setState(State.LINE);
+                            break;
+
+                        case GENERALIZATION:
+                            model.setState(State.GENERALIZATION);
+                            break;
+
+                        case IMPLEMENTS:
+                            model.setState(State.IMPLEMENTS);
+                            break;
+
+                        case AGGREGATION:
+                            model.setState(State.AGGREGATION);
+                            break;
+
+                        case COMPOSITION:
+                            model.setState(State.COMPOSITION);
+                            break;
+
+                        case DEPENDENCY:
+                            model.setState(State.DEPENDENCY);
+                            break;
+
+                        default:
+                            //do nothing
+                            break;
+
                     }
                 }
         );
@@ -108,17 +140,6 @@ public class UmlController {
         this.item = item;
     }
 
-//    public void initEvents() {
-//        UmlController self = this;
-//        this.main.pane.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent mouseEvent) {
-//                //System.out.println("mouse click detected! " + mouseEvent.getSource());
-//                self.draw();
-//            }
-//        });
-//    }
-
     private Node checkIfPane(Node n) {
         if (n.getClass().equals(Pane.class)) {
             return null;
@@ -142,34 +163,5 @@ public class UmlController {
         main.getEditPane().setOnMouseClicked(createClassBox);
     }
 
-    // called on click
-//    public void draw() {
-//        if (this.item != null) {
-//            switch (this.item) {
-//                case "class":
-//                    this.drawClass();
-//                    break;
-//                default:
-//                    // do nothing
-//            }
-//        }
-//        this.item = null;
-//    }
-
-    // specific draw methods
-//    public void drawClass() {
-//        EventHandler<MouseEvent> createClassBox = (event) -> {
-//            double x = event.getX();
-//            double y = event.getY();
-//
-//            Classbox box = new Classbox(x, y);
-//            this.main.pane.getChildren().addAll(box);
-//            //this.main.model.addClass(box);
-//        };
-//        //this.main.model.addClass(createClassBox);
-//
-//        this.main.pane.setOnMouseClicked(createClassBox);
-//
-//    }
 
 }
