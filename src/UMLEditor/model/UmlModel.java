@@ -11,6 +11,9 @@ import java.util.ArrayList;
  * Created by beltre on 10/25/16.
  */
 public class UmlModel {
+    //the current state for the object at hand
+    private SimpleObjectProperty<State> state;
+    private SimpleObjectProperty<Node> currentlySelectedNode;
 
     private SimpleObjectProperty<State> state;
     private SimpleObjectProperty<Node> currentlySelectedNode;

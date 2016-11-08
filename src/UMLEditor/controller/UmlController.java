@@ -170,6 +170,12 @@ public class UmlController {
             toolbox.stage.hide();
         }
     }
+    /**
+     * sets the panes clicks to null
+     */
+    private void setSelectState() {
+        main.getEditPane().setOnMouseClicked(null);
+    }
 
     public void setDraw(String item) {
         /* sets what item teo draw next */

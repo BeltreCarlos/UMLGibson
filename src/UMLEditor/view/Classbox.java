@@ -122,6 +122,11 @@ public class Classbox extends VBox implements Anchors {
 
     }
 
+    /**
+     * @param x The x position to be used to calculate the x position of the
+     *          anchor points.
+     * @param y The y position to be used to calculate the y position of the
+     */
     public void setAnchorPoints(double x, double y){
         anchorPoints[0] = new Point2D(x, y + (height/2)); //left
         anchorPoints[1] = new Point2D(x + (width/2), y); //top
@@ -129,6 +134,9 @@ public class Classbox extends VBox implements Anchors {
         anchorPoints[3] = new Point2D(x + (width/2), y + height); //bottom
     }
 
+    /**
+     * @param x The x position that will be used to update the x position of
+     */
     public void updateXAnchors(double x){
         anchorPoints[0] = new Point2D(x, anchorPoints[0].getY()); //left
         anchorPoints[1] = new Point2D(x + (width/2), anchorPoints[1].getY()); //top
@@ -136,6 +144,9 @@ public class Classbox extends VBox implements Anchors {
         anchorPoints[3] = new Point2D(x + (width/2), anchorPoints[3].getY()); //bottom
     }
 
+    /**
+     * @param y The y position to be used to calculate the y position of the
+     */
     public void updateYAnchors(double y){
         anchorPoints[0] = new Point2D(anchorPoints[0].getX(), y + (height/2)); //left
         anchorPoints[1] = new Point2D(anchorPoints[1].getX(), y); //top
@@ -143,6 +154,10 @@ public class Classbox extends VBox implements Anchors {
         anchorPoints[3] = new Point2D(anchorPoints[3].getX(), y + height); //bottom
     }
 
+    /**
+     * @param i The index of the anchor point
+     * @return
+     */
     public Point2D getAnchorPoint(int i){
         if(i <= anchorPoints.length){
             return anchorPoints[i];
