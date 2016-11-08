@@ -190,8 +190,12 @@ public class UmlController {
         }
     }
 
-    private void setSelectState() {
-        main.getEditPane().setOnMouseClicked(null);
+    /**
+     * returns the model
+     * @return UmlModel
+     */
+    public UmlModel getModel() {
+        return model;
     }
 
     private void setClassBoxState() {

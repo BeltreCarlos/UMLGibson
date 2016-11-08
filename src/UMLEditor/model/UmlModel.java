@@ -15,9 +15,6 @@ public class UmlModel {
     private SimpleObjectProperty<State> state;
     private SimpleObjectProperty<Node> currentlySelectedNode;
 
-    private SimpleObjectProperty<State> state;
-    private SimpleObjectProperty<Node> currentlySelectedNode;
-
     public UmlModel(){
         this.state = new SimpleObjectProperty();
         state.setValue(State.SELECT);
