@@ -65,17 +65,16 @@ public class Main extends Application {
 
         // controller
         controller = new UmlController(this);
-        controller.initEvents();
 
         // model
-        model = new UmlModel(this);
+        //model = new UmlModel(this);
 
         // set & show
         stage.setScene(scene);
         stage.show();
 
         // toolbox
-        initToolbox(); // must do after showing main stage
+        //initToolbox(); // must do after showing main stage
 
     }
     private void setLayout(){
@@ -84,11 +83,18 @@ public class Main extends Application {
         pane.setStyle(style.bgColor);
         layout.setCenter(pane);
     }
+
+    /**
+     * @return the pane where we are currently working
+     */
+    public Pane getEditPane(){
+        return this.pane;
+    }
     private void initMenu(){
         menu = new Menu(this);
     }
-    private void initToolbox(){
-        toolbox = new Toolbox(this);
-    }
+//    private void initToolbox(){
+//        toolbox = new Toolbox(this);
+//    }
 
 }
