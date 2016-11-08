@@ -84,6 +84,9 @@ public class Main extends Application {
         layout.setCenter(pane);
     }
 
+    /**
+     * @return the pane where we are currently working
+     */
     public Pane getEditPane(){
         return this.pane;
     }

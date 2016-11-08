@@ -48,6 +48,7 @@ public class Toolbox {
         this.stage.show();
     }
 
+    //sets up all the buttons on the toolbox
     private VBox createToolboxButtons(){
         VBox vBox = new VBox();
         vBox.setStyle(Main.style.bgColor);
