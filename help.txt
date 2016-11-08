@@ -1,0 +1,30 @@
+=============UMLGibson=============
+  ==========Iteration 2==========
+    =Developed by The Slackers=
+
+
+1. Overview
+   You are now using UMLGibson, a UML class diagram editor. You know what it’s time for: diagramming that project of yours with all the boxes and relationships you need.
+
+2. The Menu
+   2a. File: Here you can Open a diagram*, Save a diagram (as an image)*, or Exit the program.
+   2b. Tools: Here you can hide or show the toolbox.
+   2c. Help: You’re currently reading it!
+
+3. The Toolbox
+The toolbox is the brawn of UMLGibson. It is the what makes it a UML diagram editor.
+   3a. Boxes: Click the box option and then again on the main canvas place a classbox in that location.
+       One type of box.
+   3b. Arrows: Click a relaionship arrow and then on two boxes to draw the arrow between the two automatically.
+       Different types:
+       Association: Standard arrow.
+       Aggregation: Open diamond at end of line.
+       Composition: Closed diamond at end of line.
+       Implementation: Open arrow at end of dotted line.
+       Generalization: Open arrow.
+       Dependency: Dotted arrow.
+
+4. Gibson Mode*
+   We're not telling!
+
+* Currently not implemented flly; results may vary.

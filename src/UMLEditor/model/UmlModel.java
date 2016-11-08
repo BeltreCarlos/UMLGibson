@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Created by beltre on 10/25/16.
  */
 public class UmlModel {
-
+    //the current state for the object at hand
     private SimpleObjectProperty<State> state;
     private SimpleObjectProperty<Node> currentlySelectedNode;
 
@@ -22,6 +22,9 @@ public class UmlModel {
         this.currentlySelectedNode = new SimpleObjectProperty();
     }
 
+    /**
+     * @param s the state being toggled on
+     */
     public void setState(State s){
         this.state.setValue(s);
     }

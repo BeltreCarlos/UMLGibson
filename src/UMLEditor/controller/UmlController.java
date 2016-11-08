@@ -107,6 +107,7 @@ public class UmlController {
                         }
                     }
                 });
+        // listens for all presses on the pane, we use this to see what nodes are being pressed on
         this.main.pane.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -121,7 +122,6 @@ public class UmlController {
                         clickedNodes.add(filteredNode);
                         if(clickedNodes.size() == 2){
                             switch (model.getStateProperty().get()) {
-
 
                             }
                         }
@@ -140,6 +140,12 @@ public class UmlController {
         this.item = item;
     }
 
+    /**
+     * Checks if what you clicked on is the pane
+     *
+     * @param n what you clicked on
+     * @return the node or null if the pane
+     */
     private Node checkIfPane(Node n) {
         if (n.getClass().equals(Pane.class)) {
             return null;
@@ -147,11 +153,16 @@ public class UmlController {
             return n;
         }
     }
-
+    /**
+     * sets the panes clicks to null
+     */
     private void setSelectState() {
         main.getEditPane().setOnMouseClicked(null);
     }
 
+    /**
+     * Sets the panes clicks to create class boxes
+     */
     private void setClassBoxState() {
         EventHandler<MouseEvent> createClassBox = (event) -> {
             double x = event.getX();
