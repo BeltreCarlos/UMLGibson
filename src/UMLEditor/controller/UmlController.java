@@ -161,6 +161,18 @@ public class UmlController {
     }
 
     /**
+     * returns the model
+     * @return UmlModel
+     */
+    public UmlModel getModel() {
+        return model;
+    }
+
+    public Toolbox getToolbox() {
+        return toolbox;
+    }
+
+    /**
      * Sets the panes clicks to create class boxes
      */
     private void setClassBoxState() {
