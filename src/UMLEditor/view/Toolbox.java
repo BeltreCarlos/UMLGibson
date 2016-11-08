@@ -4,6 +4,7 @@ import UMLEditor.Main;
 import javafx.scene.control.Tooltip;
 import UMLEditor.view.Images;
 import UMLEditor.model.State;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -15,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
+import javafx.stage.WindowEvent;
 //import jdk.internal.org.objectweb.asm.util.TraceAnnotationVisitor;
 
 
@@ -22,8 +24,8 @@ public class Toolbox {
 
     // static variables
     public static String title = "Toolbox";
-    public static double width = 120;
-    public static double btnWidth = Toolbox.width + 10;
+    public static double width = 150;
+    public static double btnWidth = Toolbox.width + 20;
     public static double height = 352;
     public static double widthPadding = 10;
 
@@ -47,6 +49,19 @@ public class Toolbox {
         this.stage.setResizable(false);
         this.setPosition();
         this.stage.show();
+        
+    }
+    public void initEvents(){
+        // set menu toggle on close
+        Menu menu = this.main.menu;
+        stage.setOnHiding(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                Platform.runLater(() -> {
+                    menu.toggleToolbox.setSelected(false);
+                });
+            }
+        });
     }
 
     private VBox createToolboxButtons(){

@@ -6,6 +6,9 @@
 package UMLEditor.view;
 
 import UMLEditor.Main;
+import UMLEditor.controller.UmlController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.SeparatorMenuItem;
 
 /**
@@ -17,9 +20,11 @@ public class Menu {
     private final Main main;
     
     public javafx.scene.control.MenuBar bar;
+    public javafx.scene.control.CheckMenuItem toggleToolbox;
     
     public Menu(Main main){
         this.main = main;
+        
         
         this.bar = new javafx.scene.control.MenuBar();
         //this.bar.prefWidthProperty().bind(this.main.stage.widthProperty());
@@ -33,14 +38,23 @@ public class Menu {
         javafx.scene.control.MenuItem newMenuItem = new javafx.scene.control.MenuItem("New");
         javafx.scene.control.MenuItem saveMenuItem = new javafx.scene.control.MenuItem("Save");
         javafx.scene.control.MenuItem exitMenuItem = new javafx.scene.control.MenuItem("Exit");
-        //exitMenuItem.setOnAction(actionEvent -> Platform.exit());
+         //exitMenuItem.setOnAction(actionEvent -> Platform.exit());
+        fileMenu.getItems().addAll(newMenuItem, saveMenuItem, new SeparatorMenuItem(), exitMenuItem);
         
-        javafx.scene.control.Menu toolMenu = new javafx.scene.control.Menu("Tools");
-        javafx.scene.control.MenuItem toggleTools = new javafx.scene.control.MenuItem("Toggle toolbox");
-
-        fileMenu.getItems().addAll(newMenuItem, saveMenuItem,
-        new SeparatorMenuItem(), exitMenuItem);
-        toolMenu.getItems().add(toggleTools);
-        this.bar.getMenus().addAll(fileMenu, toolMenu);
+        // view menu
+        javafx.scene.control.Menu viewMenu = new javafx.scene.control.Menu("View");
+        toggleToolbox = new javafx.scene.control.CheckMenuItem("Toolbox");
+        toggleToolbox.setSelected(true);
+        UmlController controller = main.controller;
+        toggleToolbox.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                controller.showToolbox(toggleToolbox.isSelected());
+            }
+        });
+        viewMenu.getItems().add(toggleToolbox);
+        
+        // add to main bar
+        this.bar.getMenus().addAll(fileMenu, viewMenu);
     }
 }

@@ -17,7 +17,6 @@ import java.util.ArrayList;
  */
 public class UmlController {
 
-
     // parent instance
     private Main main;
     private Toolbox toolbox;
@@ -161,7 +160,16 @@ public class UmlController {
     }
 
     //--------------------------------------------------------------------------------------------------------------
-
+    public void initEvents(){
+        this.toolbox.initEvents();
+    }
+    public void showToolbox(Boolean bool){
+        if(bool){
+            toolbox.stage.show();
+        }else{ 
+            toolbox.stage.hide();
+        }
+    }
 
     public void setDraw(String item) {
         /* sets what item teo draw next */

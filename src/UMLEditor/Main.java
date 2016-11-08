@@ -16,9 +16,11 @@ import javafx.stage.Stage;
 import javafx.scene.layout.Pane;
 import UMLEditor.view.Classbox;
 import UMLEditor.view.Menu;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.WindowEvent;
 
 /**
  * Created by beltre on 9/21/16.
@@ -57,8 +59,7 @@ public class Main extends Application {
 
         // layout
         setLayout();
-        // menu
-        initMenu();
+
 
         // scene
         scene = new Scene(layout, UMLEditor.Main.width, UMLEditor.Main.height);
@@ -66,6 +67,11 @@ public class Main extends Application {
         // controller
         controller = new UmlController(this);
 
+        // menu
+        initMenu();
+        
+        controller.initEvents();
+        
         // model
         //model = new UmlModel(this);
 
@@ -76,7 +82,17 @@ public class Main extends Application {
         // toolbox
         //initToolbox(); // must do after showing main stage
 
+        // set close all on stage close
+        stage.setOnHiding(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                Platform.runLater(() -> {
+                    System.exit(0);
+                });
+            }
+        });
     }
+
     private void setLayout(){
         layout = new BorderPane();
         pane = new Pane();
