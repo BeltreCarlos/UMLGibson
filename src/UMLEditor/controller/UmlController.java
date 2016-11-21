@@ -27,19 +27,25 @@ public class UmlController {
     // action
     String item = null;
     //--------------------------------------------------------------------------------------------------------------
-    public UmlController(Main main) {
+    public UmlController(Main main)
+    {
         this.main = main;
         this.toolbox = new Toolbox(this.main);
 
+        /**
+         * Set initial select state
+         */
         model.getStateProperty().addListener(
                 (ObservableValue<? extends State> ov, State old_state,
                  State new_state) ->{
 
-                    if(new_state != State.LINE){
+                    if(new_state != State.LINE)
+                    {
                         clickedNodes.clear();
                     }
 
-                    switch (new_state){
+                    switch (new_state)
+                    {
                         case SELECT:
                             setSelectState();
                             break;
@@ -48,42 +54,40 @@ public class UmlController {
                             break;
 
                         case ASSOCIATION:
-                            model.setState(State.ASSOCIATION);
+                            setLineState();
                             break;
 
                         case LINE:
-                            model.setState(State.LINE);
+                            setLineState();
                             break;
 
                         case GENERALIZATION:
-                            model.setState(State.GENERALIZATION);
+                            setLineState();
                             break;
 
                         case IMPLEMENTS:
-                            model.setState(State.IMPLEMENTS);
+                            setLineState();
                             break;
 
                         case AGGREGATION:
-                            model.setState(State.AGGREGATION);
+                            setLineState();
                             break;
 
                         case COMPOSITION:
-                            model.setState(State.COMPOSITION);
+                            setLineState();
                             break;
 
                         case DEPENDENCY:
-                            model.setState(State.DEPENDENCY);
-                            break;
-
-                        default:
-                            //do nothing
+                            setLineState();
                             break;
 
                     }
                 }
         );
 
-        //keeps track of change in toggle buttons
+        /**
+         * keeps track of change in toggle buttons
+         */
         toolbox.getStateToggle().selectedToggleProperty().addListener(
                 (ObservableValue<? extends Toggle> ov, Toggle toggle,
                  Toggle new_toggle) -> {
@@ -96,10 +100,15 @@ public class UmlController {
                                 System.out.println("Select button on");
                                 model.setState(State.SELECT);
                                 break;
+
                             case CLASSBOX:
                                 System.out.println("Classbox button on");
                                 model.setState(State.CLASSBOX);
                                 break;
+
+                            case ASSOCIATION:
+                                System.out.println("Association button on");
+                                model.setState(State.ASSOCIATION);
 
                             default:
                                 //something went wrong
@@ -107,21 +116,41 @@ public class UmlController {
                         }
                     }
                 });
-        // listens for all presses on the pane, we use this to see what nodes are being pressed on
-        this.main.pane.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+        /**
+         * listens for all presses on the pane, we use this to see what nodes are being pressed on
+          */
+        this.main.pane.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(MouseEvent event)
+            {
                 Node selectedNode = event.getPickResult().getIntersectedNode();
                 Node filteredNode = checkIfPane(selectedNode);
 
-                if(filteredNode != null){
+                if(filteredNode != null)
+                {
                     model.getCurrentlySelectedNodeProperty().setValue(filteredNode);
                     //if we are in the line state and the node clicked on is able to have a line attached to it continue
                     if (model.getStateProperty().get() == State.LINE || model.getStateProperty().get() == State.ASSOCIATION
-                            || model.getStateProperty().get() == State.GENERALIZATION && filteredNode instanceof Anchors) {
+                            || model.getStateProperty().get() == State.GENERALIZATION && filteredNode instanceof Anchors)
+                    {
                         clickedNodes.add(filteredNode);
-                        if(clickedNodes.size() == 2){
-                            switch (model.getStateProperty().get()) {
+                        if(clickedNodes.size() == 2)
+                        {
+                            switch (model.getStateProperty().get())
+                            {
+                                case ASSOCIATION:
+                                    Association lineTest = new Association(
+                                            (Anchors) clickedNodes.get(0),
+                                            (Anchors) clickedNodes.get(1));
+                                    ((Anchors) clickedNodes.get(0)).addLine(lineTest);
+                                    ((Anchors) clickedNodes.get(1)).addLine(lineTest);
+                                    ((Anchors) clickedNodes.get(0)).addLineType(LineType.START);
+                                    ((Anchors) clickedNodes.get(1)).addLineType(LineType.END);
+
+                                    main.getEditPane().getChildren().addAll(lineTest, lineTest.diamond());
+                                    clickedNodes.clear();
+                                    break;
 
                             }
                         }
@@ -170,6 +199,11 @@ public class UmlController {
 
     public Toolbox getToolbox() {
         return toolbox;
+    }
+
+    private void setLineState()
+    {
+        main.getEditPane().setOnMouseClicked(null);
     }
 
     /**

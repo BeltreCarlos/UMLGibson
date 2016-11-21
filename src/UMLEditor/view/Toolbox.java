@@ -70,7 +70,17 @@ public class Toolbox {
         tb2.setTooltip(new Tooltip("ClassBox"));
         tb2.setMinWidth(Toolbox.width);
 
-        vBox.getChildren().addAll(tb1, tb2);
+        ToggleButton tb3 = new ToggleButton();
+        tb3.setUserData(State.ASSOCIATION);
+        tb3.setToggleGroup(stateToggle);
+        ImageView tb3Img = new ImageView(img.getAssociation());
+        tb3Img.setFitHeight(40.0);
+        tb3Img.setPreserveRatio(true);
+        tb3.setGraphic(tb3Img);
+        tb3.setTooltip(new Tooltip("ClassBox"));
+        tb3.setMinWidth(Toolbox.width);
+
+        vBox.getChildren().addAll(tb1, tb2, tb3);
 
         return vBox;
     }
