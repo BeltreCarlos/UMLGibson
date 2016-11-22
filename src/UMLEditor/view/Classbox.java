@@ -72,10 +72,12 @@ public class Classbox extends VBox implements Anchors {
         getChildren().addAll(className, classMethods, classFunctions);
         this.setMaxWidth(width);
         this.setMaxHeight(height);
-//        this.setStyle("-fx-border-style: solid;" + "-fx-border-width: 1;"
-//                + "-fx-border-color: red;");
 
-        //Events
+        /*
+         * Movement Handling/Mouse Events Creation of ClassBox on Mouse Press
+         * Mouse Drag determined by getting the current value of the classBox
+         * after creation (it is initialized to 0.0 by default)
+         */
         this.setOnMousePressed(e -> {
             orgX = getTranslateX();
             orgY = getTranslateY();

@@ -119,7 +119,7 @@ public class UmlController {
         /**
          * listens for all presses on the pane, we use this to see what nodes are being pressed on
           */
-        this.main.pane.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        this.main.getEditPane().addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
         {
             @Override
             public void handle(MouseEvent event)

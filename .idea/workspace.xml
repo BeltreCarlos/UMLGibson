@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ece5126f-50ec-455a-ba10-c323ea1a30df" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UMLEditor/view/Association.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UMLEditor/view/UmlLine.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UMLEditor/controller/UmlController.java" afterPath="$PROJECT_DIR$/src/UMLEditor/controller/UmlController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UMLEditor/view/Anchors.java" afterPath="$PROJECT_DIR$/src/UMLEditor/view/Anchors.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UMLEditor/view/Classbox.java" afterPath="$PROJECT_DIR$/src/UMLEditor/view/Classbox.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UMLEditor/view/Toolbox.java" afterPath="$PROJECT_DIR$/src/UMLEditor/view/Toolbox.java" />
     </list>
     <ignored path="UMLGibson.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +28,20 @@
       <file leaf-file-name="Association.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UMLEditor/view/Association.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+            <state relative-caret-position="383">
+              <caret line="71" column="29" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UmlLine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UMLEditor/view/UmlLine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="74" column="5" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -44,8 +52,8 @@
       <file leaf-file-name="Classbox.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UMLEditor/view/Classbox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="205" column="0" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
+            <state relative-caret-position="370">
+              <caret line="202" column="34" selection-start-line="202" selection-start-column="34" selection-end-line="202" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -56,36 +64,14 @@
       <file leaf-file-name="UmlController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UMLEditor/controller/UmlController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="152" column="42" selection-start-line="152" selection-start-column="42" selection-end-line="152" selection-end-column="42" />
+            <state relative-caret-position="244">
+              <caret line="147" column="84" selection-start-line="147" selection-start-column="84" selection-end-line="147" selection-end-column="84" />
               <folding>
-                <element signature="e#6747#6748#0" expanded="true" />
-                <element signature="e#6777#6778#0" expanded="true" />
-                <element signature="e#6816#6817#0" expanded="true" />
-                <element signature="e#6874#6875#0" expanded="true" />
+                <element signature="e#6756#6757#0" expanded="true" />
+                <element signature="e#6786#6787#0" expanded="true" />
+                <element signature="e#6825#6826#0" expanded="true" />
+                <element signature="e#6883#6884#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Anchors.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UMLEditor/view/Anchors.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="72" column="35" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UMLEditor/view/Menu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -98,16 +84,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UMLEditor/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="66" column="25" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -152,8 +128,8 @@
         <option value="$PROJECT_DIR$/src/UMLEditor/view/UmlLine.java" />
         <option value="$PROJECT_DIR$/src/UMLEditor/view/Anchors.java" />
         <option value="$PROJECT_DIR$/src/UMLEditor/view/Association.java" />
-        <option value="$PROJECT_DIR$/src/UMLEditor/view/Classbox.java" />
         <option value="$PROJECT_DIR$/src/UMLEditor/view/Toolbox.java" />
+        <option value="$PROJECT_DIR$/src/UMLEditor/view/Classbox.java" />
         <option value="$PROJECT_DIR$/src/UMLEditor/controller/UmlController.java" />
       </list>
     </option>
@@ -866,10 +842,10 @@
         <state relative-caret-position="585">
           <caret line="44" column="34" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="34" />
           <folding>
-            <element signature="e#6747#6748#0" expanded="true" />
-            <element signature="e#6777#6778#0" expanded="true" />
-            <element signature="e#6816#6817#0" expanded="true" />
-            <element signature="e#6874#6875#0" expanded="true" />
+            <element signature="e#6756#6757#0" expanded="true" />
+            <element signature="e#6786#6787#0" expanded="true" />
+            <element signature="e#6825#6826#0" expanded="true" />
+            <element signature="e#6883#6884#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -915,10 +891,10 @@
         <state relative-caret-position="615">
           <caret line="44" column="34" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="34" />
           <folding>
-            <element signature="e#6747#6748#0" expanded="true" />
-            <element signature="e#6777#6778#0" expanded="true" />
-            <element signature="e#6816#6817#0" expanded="true" />
-            <element signature="e#6874#6875#0" expanded="true" />
+            <element signature="e#6756#6757#0" expanded="true" />
+            <element signature="e#6786#6787#0" expanded="true" />
+            <element signature="e#6825#6826#0" expanded="true" />
+            <element signature="e#6883#6884#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1094,14 +1070,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UMLEditor/model/UmlModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UMLEditor/model/LineType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1126,26 +1094,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UMLEditor/view/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UMLEditor/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UMLEditor/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="66" column="25" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1155,17 +1107,7 @@
         <state relative-caret-position="390">
           <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UMLEditor/view/UmlLine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="99" column="5" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1175,28 +1117,34 @@
         <state relative-caret-position="578">
           <caret line="72" column="35" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UMLEditor/view/Classbox.java">
+    <entry file="file://$PROJECT_DIR$/src/UMLEditor/view/UmlLine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="205" column="0" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
+        <state relative-caret-position="110">
+          <caret line="74" column="5" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UMLEditor/view/Association.java">
+    <entry file="file://$PROJECT_DIR$/src/UMLEditor/view/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="300">
+          <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UMLEditor/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="653">
+          <caret line="66" column="25" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1210,15 +1158,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/UMLEditor/model/UmlModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="35" column="63" selection-start-line="35" selection-start-column="63" selection-end-line="35" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UMLEditor/view/Association.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="71" column="29" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UMLEditor/view/Classbox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="202" column="34" selection-start-line="202" selection-start-column="34" selection-end-line="202" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/UMLEditor/controller/UmlController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="152" column="42" selection-start-line="152" selection-start-column="42" selection-end-line="152" selection-end-column="42" />
+        <state relative-caret-position="244">
+          <caret line="147" column="84" selection-start-line="147" selection-start-column="84" selection-end-line="147" selection-end-column="84" />
           <folding>
-            <element signature="e#6747#6748#0" expanded="true" />
-            <element signature="e#6777#6778#0" expanded="true" />
-            <element signature="e#6816#6817#0" expanded="true" />
-            <element signature="e#6874#6875#0" expanded="true" />
+            <element signature="e#6756#6757#0" expanded="true" />
+            <element signature="e#6786#6787#0" expanded="true" />
+            <element signature="e#6825#6826#0" expanded="true" />
+            <element signature="e#6883#6884#0" expanded="true" />
           </folding>
         </state>
       </provider>
