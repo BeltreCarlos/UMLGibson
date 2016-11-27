@@ -2,10 +2,12 @@ package UMLEditor.view;
 
 import java.util.ArrayList;
 
+import UMLEditor.model.LineType;
 import javafx.scene.Cursor;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Point2D;
@@ -25,6 +27,8 @@ public class Classbox extends VBox implements Anchors {
     private TextArea className;
     private TextArea classMethods;
     private TextArea classFunctions;
+    private ArrayList<UmlLine> lines;
+    private ArrayList<LineType> pointTypes;
 
     public Classbox(double x, double y) {
         super();
@@ -166,6 +170,39 @@ public class Classbox extends VBox implements Anchors {
             return null;
         }
     }
+
+    @Override
+    public int getAnchorCount(){return anchorCount;}
+
+    @Override
+    public void deleteLine(int id)
+    {
+        Pane pane = (Pane) this.getParent();
+        int t = lines.size();
+        for(int i = 0; i < lines.size(); ++i)
+        {
+            if(lines.get(i).getIntId() == id)
+            {
+                if(pane !=  null)
+                {
+                    if(pointTypes.get(i).equals(LineType.END))
+                    {
+                        pane.getChildren().remove(lines.get(i));
+                    }
+                    pointTypes.remove(pointTypes.get(i));
+                    lines.remove(lines.get(i));
+                    break;
+                }
+            }
+        }
+    }
+
+    @Override
+    public void addLine(UmlLine line){ lines.add(line);}
+
+    @Override
+    public void addLineType(LineType str){ pointTypes.add(str);}
+
 
 
 }

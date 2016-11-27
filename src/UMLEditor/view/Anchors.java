@@ -47,7 +47,7 @@ public interface Anchors {
      *
      * @return Returns how many anchor points this box has
      */
-    //int getAnchorCount();
+    int getAnchorCount();
 
     /**
      *
@@ -55,14 +55,14 @@ public interface Anchors {
      *            The enum that signifies whether this lineType is a startPoint
      *            or endPoint.
      */
-    //public void addLineType(LineType str);
+    public void addLineType(LineType str);
 
     /**
      *
      * @param line
      *            Adds a UMLLine line to Lines.
      */
-    //public void addLine(UMLLine line);
+    public void addLine(UmlLine line);
 
     /**
      *
@@ -70,5 +70,5 @@ public interface Anchors {
      *            The unique id of the line to determine which line needs to be
      *            deleted.
      */
-    //public void deleteLine(int id);
+    public void deleteLine(int id);
 }
