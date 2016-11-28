@@ -12,8 +12,6 @@ import javafx.scene.shape.Line;
  */
 public class UmlLine extends Line {
 
-    //private double initX;
-    //private double initY;
     protected Point2D startingAnchor;
     protected Point2D endingAnchor;
     protected int point1Int;
@@ -78,12 +76,10 @@ public class UmlLine extends Line {
         point2Int = 0;
         for(int i = 0; i < anchorPoint1.getAnchorCount(); ++i)
         {
-            startingAnchor = new Point2D(anchorPoint1.getAnchorPoint(i).getX(),
-                    anchorPoint1.getAnchorPoint(i).getY());
+            startingAnchor = new Point2D(anchorPoint1.getAnchorPoint(i).getX(), anchorPoint1.getAnchorPoint(i).getY());
             for(int j = 0; j < anchorPoint2.getAnchorCount(); ++j)
             {
-                endingAnchor = new Point2D(anchorPoint2.getAnchorPoint(j).getX(),
-                        anchorPoint2.getAnchorPoint(j).getY());
+                endingAnchor = new Point2D(anchorPoint2.getAnchorPoint(j).getX(), anchorPoint2.getAnchorPoint(j).getY());
                 if(startingAnchor.distance(endingAnchor) < min)
                 {
                     min = startingAnchor.distance(endingAnchor);
