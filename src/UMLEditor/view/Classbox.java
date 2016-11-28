@@ -37,9 +37,10 @@ public class Classbox extends VBox implements Anchors {
         height = 200.0;
         anchorCount = 4;
         anchorPoints = new Point2D[anchorCount];
-        setCursor(Cursor.OPEN_HAND);
-        //setCursor(Cursor.CROSSHAIR);
         setAnchorPoints(x, y);
+        pointTypes = new ArrayList<LineType>();
+        lines = new ArrayList<UmlLine>();
+        setCursor(Cursor.OPEN_HAND);
         setTranslateX(x);
         setTranslateY(y);
 
@@ -69,60 +70,85 @@ public class Classbox extends VBox implements Anchors {
         classFunctions.setMouseTransparent(true);
         setVgrow(classFunctions, Priority.ALWAYS);
 
-        getChildren().addAll(className, classMethods, classFunctions);
         this.setMaxWidth(width);
         this.setMaxHeight(height);
+
+        getChildren().addAll(className, classMethods, classFunctions);
 
         /*
          * Movement Handling/Mouse Events Creation of ClassBox on Mouse Press
          * Mouse Drag determined by getting the current value of the classBox
          * after creation (it is initialized to 0.0 by default)
          */
-        this.setOnMousePressed(e -> {
+        this.setOnMousePressed((event) -> {
+            // when mouse is pressed, store initial position
             orgX = getTranslateX();
             orgY = getTranslateY();
-            dragAnchor = new Point2D(e.getSceneX(), e.getSceneY());
-            e.consume();
+            dragAnchor = new Point2D(event.getSceneX(), event.getSceneY());
+            event.consume();
         });
 
         // Drag/drop functionality
-        this.setOnMouseDragged(e -> {
+        setOnMouseDragged(e -> {
             double dragX = e.getSceneX() - dragAnchor.getX();
             double dragY = e.getSceneY() - dragAnchor.getY();
             double newX = orgX + dragX;
             double newY = orgY + dragY;
             width = widthProperty().getValue();
             height = heightProperty().getValue();
-            if((newX >= this.sceneProperty().get().getX()) &&
-                    (newX <= this.sceneProperty().get().getWidth()
-                            - (this.sceneProperty().get().getX() + widthProperty().getValue()
-                    ))) {
-
+            if((newX >= this.sceneProperty().get().getX()) && (newX <= this.sceneProperty().get().getWidth()
+                            - (this.sceneProperty().get().getX() + widthProperty().getValue())))
+            {
                 setTranslateX(newX);
                 updateXAnchors(newX);
+
             } else if(newX >= this.sceneProperty().get().getX()) {
-                setTranslateX(this.sceneProperty().get().getWidth()
-                        - widthProperty().getValue());
+                setTranslateX(this.sceneProperty().get().getWidth() - widthProperty().getValue());
+                updateXAnchors(this.sceneProperty().get().getWidth() - widthProperty().getValue());
+
             } else {
                 setTranslateX(0);
                 updateXAnchors(0);
             }
 
-            if ((newY >= this.sceneProperty().get().getY())
-                    && (newY <= this.sceneProperty().get().getHeight()
-                    - (this.sceneProperty().get().getY() + heightProperty()
-                    .getValue()))) {
+            for(int i = 0; i < lines.size(); ++i)
+            {
+                lines.get(i).updateAnchorPoints();
+                if(pointTypes.get(i).equals(LineType.START))
+                {
+                    lines.get(i).setStartX(anchorPoints[lines.get(i).getAnchorPoint1Int()].getX());
+                }
+                if(pointTypes.get(i).equals(LineType.END))
+                {
+                    lines.get(i).setEndX(anchorPoints[lines.get(i).getAnchorPoint2Int()].getX());
+                }
+            }
+
+            if ((newY >= this.sceneProperty().get().getY()) && (newY <= this.sceneProperty().get().getHeight()
+                    - (this.sceneProperty().get().getY() + heightProperty().getValue())))
+            {
                 setTranslateY(newY);
                 updateYAnchors(newY);
 
             } else if (newY >= this.sceneProperty().get().getY()) {
-                setTranslateY(this.sceneProperty().get().getHeight()
-                        - heightProperty().getValue());
-                updateYAnchors(this.sceneProperty().get().getHeight()
-                        - heightProperty().getValue());
+                setTranslateY(this.sceneProperty().get().getHeight() - heightProperty().getValue());
+                updateYAnchors(this.sceneProperty().get().getHeight() - heightProperty().getValue());
+
             } else {
                 setTranslateY(0);
                 updateYAnchors(0);
+            }
+            for(int i = 0; i < lines.size(); ++i)
+            {
+                lines.get(i).updateAnchorPoints();
+                if(pointTypes.get(i).equals(LineType.START))
+                {
+                    lines.get(i).setStartY(anchorPoints[lines.get(i).getAnchorPoint1Int()].getY());
+                }
+                if(pointTypes.get(i).equals(LineType.END))
+                {
+                    lines.get(i).setEndY(anchorPoints[lines.get(i).getAnchorPoint2Int()].getY());
+                }
             }
             e.consume();
         });
@@ -135,30 +161,30 @@ public class Classbox extends VBox implements Anchors {
      * @param y The y position to be used to calculate the y position of the
      */
     public void setAnchorPoints(double x, double y){
-        anchorPoints[0] = new Point2D(x, y + (height/2)); //left
-        anchorPoints[1] = new Point2D(x + (width/2), y); //top
-        anchorPoints[2] = new Point2D(x + width, y + (height/2)); //right
-        anchorPoints[3] = new Point2D(x + (width/2), y + height); //bottom
+        anchorPoints[0] = new Point2D(x + (width / 2), y); // top
+        anchorPoints[1] = new Point2D(x, y + (height / 2)); // left
+        anchorPoints[2] = new Point2D(x + width, y + (height / 2)); // right
+        anchorPoints[3] = new Point2D(x + (width / 2), y + height); // bottom
     }
 
     /**
      * @param x The x position that will be used to update the x position of
      */
     public void updateXAnchors(double x){
-        anchorPoints[0] = new Point2D(x, anchorPoints[0].getY()); //left
-        anchorPoints[1] = new Point2D(x + (width/2), anchorPoints[1].getY()); //top
-        anchorPoints[2] = new Point2D(x + width, anchorPoints[2].getY()); //right
-        anchorPoints[3] = new Point2D(x + (width/2), anchorPoints[3].getY()); //bottom
+        anchorPoints[0] = new Point2D(x + (width / 2), anchorPoints[0].getY());
+        anchorPoints[1] = new Point2D(x, anchorPoints[1].getY());
+        anchorPoints[2] = new Point2D(x + width, anchorPoints[2].getY());
+        anchorPoints[3] = new Point2D(x + (width / 2), anchorPoints[3].getY());
     }
 
     /**
      * @param y The y position to be used to calculate the y position of the
      */
     public void updateYAnchors(double y){
-        anchorPoints[0] = new Point2D(anchorPoints[0].getX(), y + (height/2)); //left
-        anchorPoints[1] = new Point2D(anchorPoints[1].getX(), y); //top
-        anchorPoints[2] = new Point2D(anchorPoints[2].getX(), y + (height/2)); //right
-        anchorPoints[3] = new Point2D(anchorPoints[3].getX(), y + height); //bottom
+        anchorPoints[0] = new Point2D(anchorPoints[0].getX(), y);
+        anchorPoints[1] = new Point2D(anchorPoints[1].getX(), y + (height / 2));
+        anchorPoints[2] = new Point2D(anchorPoints[2].getX(), y + (height / 2));
+        anchorPoints[3] = new Point2D(anchorPoints[3].getX(), y + height);
     }
 
     /**

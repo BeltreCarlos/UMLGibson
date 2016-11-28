@@ -1,10 +1,19 @@
 package UMLEditor.view;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.transform.Rotate;
+
 
 /**
  * Created by beltre on 11/21/16.
@@ -29,7 +38,7 @@ public class Association extends UmlLine {
         polygon.setStrokeWidth(1);
         polygon.setStroke(Color.BLACK);
         double deltaX = this.getStartY() - this.getEndY();
-        double deltaY = this.getStartX() - this.getEndX();
+        double deltaY = this.getEndX() - this.getStartX();
         double slopeInDegrees = Math.toDegrees(Math.atan2(deltaX, deltaY));
 
         polygon.getTransforms().add(rotate);
@@ -69,7 +78,7 @@ public class Association extends UmlLine {
         this.setEndY(anchorPoint2.getAnchorPoint(point2Int).getY());
 
         double deltaX = this.getStartY() - this.getEndY();
-        double deltaY = this.getStartX() - this.getEndX();
+        double deltaY = this.getEndX() - this.getStartX();
         //gets you the degress of the x axis(on the left) of the second clicked node
         double slopeInDegrees = Math.toDegrees(Math.atan2(deltaX,deltaY));
 

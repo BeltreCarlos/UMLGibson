@@ -17,20 +17,17 @@ import java.util.ArrayList;
  */
 public class UmlController {
 
-
     // parent instance
-    private Main main;
+    private Main main = new Main();
     private Toolbox toolbox;
     private UmlModel model = new UmlModel();
     ArrayList<Node> clickedNodes = new ArrayList<>();
 
-    // action
-    String item = null;
     //--------------------------------------------------------------------------------------------------------------
     public UmlController(Main main)
     {
         this.main = main;
-        this.toolbox = new Toolbox(this.main);
+        this.toolbox = new Toolbox(main);
 
         /**
          * Set initial select state
@@ -109,6 +106,7 @@ public class UmlController {
                             case ASSOCIATION:
                                 System.out.println("Association button on");
                                 model.setState(State.ASSOCIATION);
+                                break;
 
                             default:
                                 //something went wrong
@@ -119,8 +117,7 @@ public class UmlController {
         /**
          * listens for all presses on the pane, we use this to see what nodes are being pressed on
           */
-        this.main.getEditPane().addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
-        {
+        main.getEditPane().addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event)
             {
@@ -150,6 +147,7 @@ public class UmlController {
 
                                     main.getEditPane().getChildren().addAll(lineTest, lineTest.diamond());
                                     clickedNodes.clear();
+
                                     break;
 
                             }
@@ -163,11 +161,6 @@ public class UmlController {
 
     //--------------------------------------------------------------------------------------------------------------
 
-
-    public void setDraw(String item) {
-        /* sets what item teo draw next */
-        this.item = item;
-    }
 
     /**
      * Checks if what you clicked on is the pane
@@ -186,7 +179,7 @@ public class UmlController {
      * sets the panes clicks to null
      */
     private void setSelectState() {
-        main.getEditPane().setOnMouseClicked(null);
+        this.main.getEditPane().setOnMouseClicked(null);
     }
 
     /**
@@ -203,7 +196,7 @@ public class UmlController {
 
     private void setLineState()
     {
-        main.getEditPane().setOnMouseClicked(null);
+        this.main.getEditPane().setOnMouseClicked(null);
     }
 
     /**
@@ -217,7 +210,7 @@ public class UmlController {
             main.getEditPane().getChildren().add(new Classbox(x, y));
         };
 
-        main.getEditPane().setOnMouseClicked(createClassBox);
+        this.main.getEditPane().setOnMouseClicked(createClassBox);
     }
 
 
