@@ -10,6 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import java.util.Optional;
 
@@ -29,6 +31,8 @@ public class Menu {
     private javafx.scene.control.MenuItem newMenuItem;
     private javafx.scene.control.MenuItem saveMenuItem;
     private javafx.scene.control.MenuItem exitMenuItem;
+
+    private MediaPlayer mediaPlayer;
 
     //Tool Buttons
     javafx.scene.control.Menu toolMenu;
@@ -107,12 +111,21 @@ public class Menu {
         alert3.setHeaderText("Alright! Relax!");
         alert3.setContentText("Can't say I didn't warn you. Good luck out there!");
 
+//        // Media File and Player
+//        Media mediaFile = new Media("UMLEditor/resources/StopCrying.wav");
+
 
         Optional<ButtonType> result = alert1.showAndWait();
         if(result.get() == ButtonType.OK)
         {
             System.out.println("Confirm 1 Accepted");
             main.updateBackground(gibson_background);
+
+            // Media File and Player
+            Media mediaFile = new Media("file:///Users/beltre/develop/UMLGibson/src/UMLEditor/resources/StopCrying.wav");
+            mediaPlayer = new MediaPlayer(mediaFile);
+            mediaPlayer.play();
+
 //            Optional<ButtonType> result2 = alert2.showAndWait();
 //            if(result2.get() == ButtonType.OK)
 //            {

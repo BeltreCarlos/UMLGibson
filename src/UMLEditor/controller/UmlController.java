@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class UmlController {
 
     // parent instance
-    private Main main = new Main();
+    private Main main;
     private Toolbox toolbox;
     private UmlModel model = new UmlModel();
     ArrayList<Node> clickedNodes = new ArrayList<>();
@@ -27,7 +27,7 @@ public class UmlController {
     public UmlController(Main main)
     {
         this.main = main;
-        this.toolbox = new Toolbox(main);
+        this.toolbox = new Toolbox(this.main);
 
         /**
          * Set initial select state

@@ -10,6 +10,8 @@ import UMLEditor.view.Toolbox;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 //import UMLEditor.Controller.Controller;
@@ -29,21 +31,16 @@ public class Main extends Application {
     public static String title = "UML Editor";
     public static int width = 1024;
     public static int height = 640;
-    //public static Display display = new Display();
     public static Style style = new Style();
-
-    // controller
+    // MVC
     public UmlController controller;
     public UmlModel model;
     private UmlView view;
-
     // instance variables
     public Stage stage;
     public BorderPane layout;
     public Pane pane = new Pane();
     public Scene scene;
-
-    // visual classes
     public Menu menu;
     public Toolbox toolbox;
 
@@ -56,8 +53,8 @@ public class Main extends Application {
         stage = primaryStage;
         stage.setTitle(UMLEditor.Main.title);
 
+
         // layout
-        //setLayout();
         layout = new BorderPane();
         pane.setStyle(style.bgColor);
         layout.setCenter(pane);
