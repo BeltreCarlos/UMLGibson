@@ -14,12 +14,15 @@ public class UmlModel {
     //the current state for the object at hand
     private SimpleObjectProperty<State> state;
     private SimpleObjectProperty<Node> currentlySelectedNode;
+    private SimpleObjectProperty<GibsonState> gibsonState;
 
     public UmlModel(){
         this.state = new SimpleObjectProperty();
         state.setValue(State.SELECT);
 
         this.currentlySelectedNode = new SimpleObjectProperty();
+
+        this.gibsonState = new SimpleObjectProperty();
     }
 
     /**
@@ -36,6 +39,9 @@ public class UmlModel {
     public SimpleObjectProperty<Node> getCurrentlySelectedNodeProperty(){
         return currentlySelectedNode;
     }
+
+    public SimpleObjectProperty<GibsonState> getGibsonState(){ return gibsonState;}
+    public void setGibsonState(GibsonState s){ this.gibsonState.set(s);}
 
 
 }
