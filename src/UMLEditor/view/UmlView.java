@@ -1,6 +1,7 @@
 package UMLEditor.view;
 
 import UMLEditor.Main;
+import UMLEditor.Style;
 import javafx.geometry.Insets;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.*;
@@ -11,9 +12,10 @@ import javafx.scene.paint.Color;
  */
 public class UmlView extends BorderPane {
     private Pane editPane = new Pane();
+    private Style style = new Style();
     Main main = new Main();
-    private Toolbox box = new Toolbox(main);
-    private Toolbox toolBox;
+    public BorderPane layout = new BorderPane();
+    private Pane pane = new Pane();
 
     public UmlView() {
         super();

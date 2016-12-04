@@ -40,7 +40,7 @@ public class Main extends Application {
     // instance variables
     public Stage stage;
     public BorderPane layout;
-    public Pane pane;
+    public Pane pane = new Pane();
     public Scene scene;
 
     // visual classes
@@ -50,13 +50,18 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
     @Override
     public void start(Stage primaryStage) {
         stage = primaryStage;
         stage.setTitle(UMLEditor.Main.title);
 
         // layout
-        setLayout();
+        //setLayout();
+        layout = new BorderPane();
+        pane.setStyle(style.bgColor);
+        layout.setCenter(pane);
+
         // menu
         initMenu();
 
@@ -73,15 +78,16 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 
-        // toolbox
-        //initToolbox(); // must do after showing main stage
-
     }
-    private void setLayout(){
-        layout = new BorderPane();
-        pane = new Pane();
-        pane.setStyle(style.bgColor);
-        layout.setCenter(pane);
+//    private void setLayout(){
+//        layout = new BorderPane();
+//        //pane = new Pane();
+//        pane.setStyle(style.bgColor);
+//        layout.setCenter(pane);
+//    }
+
+    public void updateBackground(String s){
+        this.pane.setStyle(s);
     }
 
     /**

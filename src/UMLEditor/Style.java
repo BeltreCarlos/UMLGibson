@@ -12,7 +12,7 @@ public class Style {
     // configurable
     private static final String background_color = "#34495E";
     
-    // external useage
+    // external usage
     public String bgColor;
 
     
