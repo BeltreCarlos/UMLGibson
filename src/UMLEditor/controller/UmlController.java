@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class UmlController {
 
     // parent instance
-    private Main main = new Main();
+    private Main main;
     private Toolbox toolbox;
     private UmlModel model = new UmlModel();
     ArrayList<Node> clickedNodes = new ArrayList<>();
@@ -27,7 +27,7 @@ public class UmlController {
     public UmlController(Main main)
     {
         this.main = main;
-        this.toolbox = new Toolbox(main);
+        this.toolbox = new Toolbox(this.main);
 
         /**
          * Set initial select state
@@ -108,6 +108,31 @@ public class UmlController {
                                 model.setState(State.ASSOCIATION);
                                 break;
 
+                            case GENERALIZATION:
+                                System.out.println("Generalization button on");
+                                model.setState(State.GENERALIZATION);
+                                break;
+
+                            case IMPLEMENTS:
+                                System.out.println("Implements button on");
+                                model.setState(State.IMPLEMENTS);
+                                break;
+
+                            case AGGREGATION:
+                                System.out.println("Aggregation button on");
+                                model.setState(State.AGGREGATION);
+                                break;
+
+                            case COMPOSITION:
+                                System.out.println("Composition button on");
+                                model.setState(State.COMPOSITION);
+                                break;
+
+                            case DEPENDENCY:
+                                System.out.println("Dependency button on");
+                                model.setState(State.DEPENDENCY);
+                                break;
+
                             default:
                                 //something went wrong
                                 break;
@@ -129,16 +154,17 @@ public class UmlController {
                     model.getCurrentlySelectedNodeProperty().setValue(filteredNode);
                     //if we are in the line state and the node clicked on is able to have a line attached to it continue
                     if (model.getStateProperty().get() == State.LINE || model.getStateProperty().get() == State.ASSOCIATION
-                            || model.getStateProperty().get() == State.GENERALIZATION && filteredNode instanceof Anchors)
+                            || model.getStateProperty().get() == State.GENERALIZATION || model.getStateProperty().get() == State.IMPLEMENTS
+                            || model.getStateProperty().get() == State.AGGREGATION || model.getStateProperty().get() == State.COMPOSITION
+                            || model.getStateProperty().get() == State.DEPENDENCY && filteredNode instanceof Anchors)
                     {
                         clickedNodes.add(filteredNode);
                         if(clickedNodes.size() == 2)
                         {
                             switch (model.getStateProperty().get())
                             {
-                                case ASSOCIATION:
-                                    Association lineTest = new Association(
-                                            (Anchors) clickedNodes.get(0),
+                                case AGGREGATION:
+                                    Aggregation lineTest = new Aggregation((Anchors) clickedNodes.get(0),
                                             (Anchors) clickedNodes.get(1));
                                     ((Anchors) clickedNodes.get(0)).addLine(lineTest);
                                     ((Anchors) clickedNodes.get(1)).addLine(lineTest);
@@ -147,7 +173,66 @@ public class UmlController {
 
                                     main.getEditPane().getChildren().addAll(lineTest, lineTest.diamond());
                                     clickedNodes.clear();
+                                    break;
 
+                                case COMPOSITION:
+                                    Composition compLine = new Composition((Anchors) clickedNodes.get(0),
+                                            (Anchors) clickedNodes.get(1));
+                                    ((Anchors) clickedNodes.get(0)).addLine(compLine);
+                                    ((Anchors) clickedNodes.get(1)).addLine(compLine);
+                                    ((Anchors) clickedNodes.get(0)).addLineType(LineType.START);
+                                    ((Anchors) clickedNodes.get(1)).addLineType(LineType.END);
+
+                                    main.getEditPane().getChildren().addAll(compLine, compLine.diamond());
+                                    clickedNodes.clear();
+                                    break;
+
+                                case ASSOCIATION:
+                                    Association asscLine = new Association((Anchors) clickedNodes.get(0),
+                                            (Anchors) clickedNodes.get(1));
+                                    ((Anchors) clickedNodes.get(0)).addLine(asscLine);
+                                    ((Anchors) clickedNodes.get(1)).addLine(asscLine);
+                                    ((Anchors) clickedNodes.get(0)).addLineType(LineType.START);
+                                    ((Anchors) clickedNodes.get(1)).addLineType(LineType.END);
+
+                                    main.getEditPane().getChildren().addAll(asscLine, asscLine.arrowHead());
+                                    clickedNodes.clear();
+                                    break;
+
+                                case GENERALIZATION:
+                                    Generalization genLine = new Generalization((Anchors) clickedNodes.get(0),
+                                            (Anchors) clickedNodes.get(1));
+                                    ((Anchors) clickedNodes.get(0)).addLine(genLine);
+                                    ((Anchors) clickedNodes.get(1)).addLine(genLine);
+                                    ((Anchors) clickedNodes.get(0)).addLineType(LineType.START);
+                                    ((Anchors) clickedNodes.get(1)).addLineType(LineType.END);
+
+                                    main.getEditPane().getChildren().addAll(genLine, genLine.filledArrow());
+                                    clickedNodes.clear();
+                                    break;
+
+                                case IMPLEMENTS:
+                                    Implements impLine = new Implements((Anchors) clickedNodes.get(0),
+                                            (Anchors) clickedNodes.get(1));
+                                    ((Anchors) clickedNodes.get(0)).addLine(impLine);
+                                    ((Anchors) clickedNodes.get(1)).addLine(impLine);
+                                    ((Anchors) clickedNodes.get(0)).addLineType(LineType.START);
+                                    ((Anchors) clickedNodes.get(1)).addLineType(LineType.END);
+
+                                    main.getEditPane().getChildren().addAll(impLine, impLine.filledArrow());
+                                    clickedNodes.clear();
+                                    break;
+
+                                case DEPENDENCY:
+                                    Dependency depLine = new Dependency((Anchors) clickedNodes.get(0),
+                                            (Anchors) clickedNodes.get(1));
+                                    ((Anchors) clickedNodes.get(0)).addLine(depLine);
+                                    ((Anchors) clickedNodes.get(1)).addLine(depLine);
+                                    ((Anchors) clickedNodes.get(0)).addLineType(LineType.START);
+                                    ((Anchors) clickedNodes.get(1)).addLineType(LineType.END);
+
+                                    main.getEditPane().getChildren().addAll(depLine, depLine.arrowHead());
+                                    clickedNodes.clear();
                                     break;
 
                             }
