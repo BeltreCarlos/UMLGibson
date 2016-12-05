@@ -13,8 +13,12 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
@@ -36,6 +40,11 @@ public class Toolbox {
     public Scene scene;
     public VBox layout;
     private ToggleGroup stateToggle;
+    private MediaPlayer mediaPlayer;
+    private String gibson_background = "-fx-background-color: #A9A9A9; " +
+            "-fx-background-image: url('UMLEditor/view/images/braveheart_bkg.png'); " +
+            "-fx-background-position: center center; " +
+            "-fx-background-size: cover;";
 
     public Toolbox(Main main) {
         stateToggle = new ToggleGroup();
@@ -66,6 +75,26 @@ public class Toolbox {
         tb1.setMaxWidth(Double.MAX_VALUE);
         tb1.setMaxHeight(Double.MAX_VALUE);
         vBox.setVgrow(tb1, Priority.ALWAYS);
+
+        tb1.setOnMouseClicked(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event)
+            {
+                if(event.getButton().equals(MouseButton.PRIMARY))
+                {
+                    if(event.getClickCount() == 7){
+                        System.out.println("You've activated the easter egg");
+                        main.updateBackground(gibson_background);
+
+                        // Media File and Player
+                        Media mediaFile = new Media("file:///Users/beltre/develop/UMLGibson/src/UMLEditor/resources/StopCrying.wav");
+                        mediaPlayer = new MediaPlayer(mediaFile);
+                        mediaPlayer.play();
+                    }
+                }
+            }
+        });
 
         ToggleButton tb2 = new ToggleButton();
         tb2.setUserData(State.CLASSBOX);

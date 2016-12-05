@@ -199,6 +199,42 @@ public class UmlController {
                                     clickedNodes.clear();
                                     break;
 
+                                case GENERALIZATION:
+                                    Generalization genLine = new Generalization((Anchors) clickedNodes.get(0),
+                                            (Anchors) clickedNodes.get(1));
+                                    ((Anchors) clickedNodes.get(0)).addLine(genLine);
+                                    ((Anchors) clickedNodes.get(1)).addLine(genLine);
+                                    ((Anchors) clickedNodes.get(0)).addLineType(LineType.START);
+                                    ((Anchors) clickedNodes.get(1)).addLineType(LineType.END);
+
+                                    main.getEditPane().getChildren().addAll(genLine, genLine.filledArrow());
+                                    clickedNodes.clear();
+                                    break;
+
+                                case IMPLEMENTS:
+                                    Implements impLine = new Implements((Anchors) clickedNodes.get(0),
+                                            (Anchors) clickedNodes.get(1));
+                                    ((Anchors) clickedNodes.get(0)).addLine(impLine);
+                                    ((Anchors) clickedNodes.get(1)).addLine(impLine);
+                                    ((Anchors) clickedNodes.get(0)).addLineType(LineType.START);
+                                    ((Anchors) clickedNodes.get(1)).addLineType(LineType.END);
+
+                                    main.getEditPane().getChildren().addAll(impLine, impLine.filledArrow());
+                                    clickedNodes.clear();
+                                    break;
+
+                                case DEPENDENCY:
+                                    Dependency depLine = new Dependency((Anchors) clickedNodes.get(0),
+                                            (Anchors) clickedNodes.get(1));
+                                    ((Anchors) clickedNodes.get(0)).addLine(depLine);
+                                    ((Anchors) clickedNodes.get(1)).addLine(depLine);
+                                    ((Anchors) clickedNodes.get(0)).addLineType(LineType.START);
+                                    ((Anchors) clickedNodes.get(1)).addLineType(LineType.END);
+
+                                    main.getEditPane().getChildren().addAll(depLine, depLine.arrowHead());
+                                    clickedNodes.clear();
+                                    break;
+
                             }
                         }
                     }

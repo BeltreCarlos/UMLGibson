@@ -10,17 +10,18 @@ import javafx.scene.transform.Rotate;
 /**
  * Created by beltre on 12/4/16.
  */
-public class Association extends UmlLine {
+public class Dependency extends UmlLine {
 
     private Line minSpreadLine;
     private Line maxSpreadLine;
     final Group group = new Group();
     Rotate rotate = new Rotate();
 
-
-    public Association(Anchors a1, Anchors a2)
+    public Dependency(Anchors a1, Anchors a2)
     {
         super(a1, a2);
+
+        setDashed();
 
         //slope of the lines
         double deltaX = this.getStartY() - this.getEndY();
@@ -108,5 +109,4 @@ public class Association extends UmlLine {
         }
 
     }
-
 }
