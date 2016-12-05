@@ -13,6 +13,7 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+
 import java.util.Optional;
 
 /**
@@ -41,6 +42,7 @@ public class Menu {
     //Gibson Buttons
     private javafx.scene.control.Menu gibsonMenu;
     private javafx.scene.control.MenuItem activateGibson;
+
 
     //****************************************************************************
 
@@ -111,9 +113,9 @@ public class Menu {
         alert3.setHeaderText("Alright! Relax!");
         alert3.setContentText("Can't say I didn't warn you. Good luck out there!");
 
-//        // Media File and Player
-//        Media mediaFile = new Media("UMLEditor/resources/StopCrying.wav");
+        // *******
 
+        // *******
 
         Optional<ButtonType> result = alert1.showAndWait();
         if(result.get() == ButtonType.OK)

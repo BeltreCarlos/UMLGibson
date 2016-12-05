@@ -8,8 +8,13 @@ import UMLEditor.view.Menu;
 import UMLEditor.view.Toolbox;
 //import editor.*;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -21,6 +26,7 @@ import UMLEditor.view.Menu;
 import javafx.event.EventHandler;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.StageStyle;
 
 /**
  * Created by beltre on 9/21/16.
@@ -28,7 +34,7 @@ import javafx.scene.input.MouseEvent;
 public class Main extends Application {
 
     // static variables
-    public static String title = "UML Editor";
+    public static String title = "UMLGibson Editor";
     public static int width = 1024;
     public static int height = 640;
     public static Style style = new Style();
@@ -50,9 +56,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
+
         stage = primaryStage;
         stage.setTitle(UMLEditor.Main.title);
-
 
         // layout
         layout = new BorderPane();
@@ -63,7 +70,7 @@ public class Main extends Application {
         initMenu();
 
         // scene
-        scene = new Scene(layout, UMLEditor.Main.width, UMLEditor.Main.height);
+        scene = new Scene(layout, this.width, this.height);
 
         // controller
         controller = new UmlController(this);
@@ -99,5 +106,6 @@ public class Main extends Application {
 //    private void initToolbox(){
 //        toolbox = new Toolbox(this);
 //    }
+
 
 }
