@@ -3,8 +3,16 @@ package UMLEditor.view;
 import java.util.ArrayList;
 
 import UMLEditor.model.LineType;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
@@ -17,7 +25,7 @@ import javafx.stage.Stage;
 /**
  * Created by beltre on 9/21/16.
  */
-public class Classbox extends VBox implements Anchors {
+public class Classbox extends VBox implements Anchors, NodeEditMenu {
 
     private double orgX, orgY;
     private double height, width;
@@ -29,6 +37,7 @@ public class Classbox extends VBox implements Anchors {
     private TextArea classFunctions;
     private ArrayList<UmlLine> lines;
     private ArrayList<LineType> pointTypes;
+    private Images img = new Images();
 
     public Classbox(double x, double y) {
         super();
@@ -231,6 +240,140 @@ public class Classbox extends VBox implements Anchors {
     @Override
     public void addLineType(LineType str){ pointTypes.add(str);}
 
+
+    public void applyActions(TextArea text)
+    {
+        text.requestFocus();
+        text.setEditable(true);
+        text.setMouseTransparent(false);
+        text.setStyle("-fx-background-color: red");
+    }
+
+    public void revertActions(TextArea text)
+    {
+        if(text == className)
+        {
+            classMethods.setEditable(false);
+            classMethods.setMouseTransparent(true);
+            classMethods.setStyle("-fx-background-color: white");
+            classFunctions.setEditable(false);
+            classFunctions.setMouseTransparent(true);
+            classFunctions.setStyle("-fx-background-color: white");
+        } else if(text == classMethods){
+            className.setEditable(false);
+            className.setMouseTransparent(true);
+            className.setStyle("-fx-background-color: white");
+            classFunctions.setEditable(false);
+            classFunctions.setMouseTransparent(true);
+            classFunctions.setStyle("-fx-background-color: white");
+        } else {
+            className.setEditable(false);
+            className.setMouseTransparent(true);
+            className.setStyle("-fx-background-color: white");
+            classMethods.setEditable(false);
+            classMethods.setMouseTransparent(true);
+            classMethods.setStyle("-fx-background-color: white");
+        }
+    }
+
+    public void removeActions()
+    {
+        revertActions(className);
+        revertActions(classMethods);
+        revertActions(classFunctions);
+
+    }
+
+    //**********
+    @Override
+    public void generatePanel(VBox v)
+    {
+        v.getChildren().clear();
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setHeight(40.0);
+        dropShadow.setWidth(40.0);
+        //dropShadow.setColor(Color.RED);
+
+        Button editName = new Button();
+        editName.setMaxWidth(Double.MAX_VALUE);
+        VBox.setVgrow(editName, Priority.ALWAYS);
+        ImageView editNameImg = new ImageView(img.getEditBox1());
+        editNameImg.setFitHeight(60.0);
+        editNameImg.setPreserveRatio(true);
+        editName.setGraphic(editNameImg);
+        editName.setTooltip(new Tooltip("Edit Name"));
+        editName.setOnAction((ActionEvent e) ->
+        {
+            TextArea textArea = className;
+            applyActions(textArea);
+            revertActions(textArea);
+        });
+        editName.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event) { editName.setEffect(dropShadow); }
+        });
+        editName.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e) { editName.setEffect(null); }
+        });
+
+        Button editOps = new Button();
+        editName.setMaxWidth(Double.MAX_VALUE);
+        VBox.setVgrow(editOps, Priority.ALWAYS);
+        ImageView editOpsImg = new ImageView(img.getEditBox2());
+        editOpsImg.setFitHeight(60.0);
+        editOpsImg.setPreserveRatio(true);
+        editOps.setGraphic(editOpsImg);
+        editOps.setTooltip(new Tooltip("Edit Operations"));
+        editOps.setOnAction((ActionEvent e) ->
+        {
+            TextArea textArea = classMethods;
+            applyActions(textArea);
+            revertActions(textArea);
+        });
+        editOps.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event) { editOps.setEffect(dropShadow); }
+        });
+        editOps.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e) { editOps.setEffect(null); }
+        });
+
+        Button editFuncs = new Button();
+        editFuncs.setMaxWidth(Double.MAX_VALUE);
+        VBox.setVgrow(editFuncs, Priority.ALWAYS);
+        ImageView editFuncsImg = new ImageView(img.getEditBox3());
+        editFuncsImg.setFitHeight(60.0);
+        editFuncsImg.setPreserveRatio(true);
+        editFuncs.setGraphic(editFuncsImg);
+        editFuncs.setTooltip(new Tooltip("Edit Functions"));
+        editFuncs.setOnAction((ActionEvent e) ->
+        {
+            TextArea textArea = classFunctions;
+            applyActions(textArea);
+            revertActions(textArea);
+        });
+        editFuncs.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event) { editFuncs.setEffect(dropShadow); }
+        });
+        editFuncs.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e) { editFuncs.setEffect(null); }
+        });
+
+
+        v.getChildren().addAll(editName, editOps, editFuncs);
+
+    }
+    //**********
 
 
 }

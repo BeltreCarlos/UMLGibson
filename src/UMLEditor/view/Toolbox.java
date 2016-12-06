@@ -1,15 +1,12 @@
 package UMLEditor.view;
 
 import UMLEditor.Main;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import UMLEditor.view.Images;
 import UMLEditor.model.State;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,6 +20,9 @@ import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
 import jdk.internal.org.objectweb.asm.util.TraceAnnotationVisitor;
+
+import java.io.File;
+import java.util.Optional;
 
 
 public class Toolbox {
@@ -83,14 +83,10 @@ public class Toolbox {
             {
                 if(event.getButton().equals(MouseButton.PRIMARY))
                 {
-                    if(event.getClickCount() == 7){
+                    if(event.getClickCount() == 7)
+                    {
                         System.out.println("You've activated the easter egg");
-                        main.updateBackground(gibson_background);
-
-                        // Media File and Player
-                        Media mediaFile = new Media("file:///Users/beltre/develop/UMLGibson/src/UMLEditor/resources/StopCrying.wav");
-                        mediaPlayer = new MediaPlayer(mediaFile);
-                        mediaPlayer.play();
+                        createAlert();
                     }
                 }
             }
@@ -188,9 +184,7 @@ public class Toolbox {
     public void setPosition() {
 
         this.xPos = 10.0;
-        //System.out.println(x);
         this.yPos = 10.0;
-        //System.out.println(this.yPos);
         this.stage.setX(this.xPos);
         this.stage.setY(this.yPos);
     }
@@ -200,6 +194,55 @@ public class Toolbox {
     }
 
 
+    public Alert createAlert(){
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("Activating Gibson Mode...");
+        alert1.setHeaderText("WARNING: You are about to activate Gibson Mode");
+        alert1.setContentText("Activating Gibson Mode is the point of no return. Are you sure" +
+                " you want to do this?");
+        Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert2.setTitle("Activating Gibson Mode...");
+        alert2.setHeaderText("ARE YOU SURE???");
+        alert2.setContentText("If you do this, you'll have to close the app to exit it!");
+
+        Alert alert3 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert3.setTitle("Activating Gibson Mode...");
+        alert3.setHeaderText("Alright! Relax!");
+        alert3.setContentText("Can't say I didn't warn you. Good luck out there!");
+
+
+        Optional<ButtonType> result = alert1.showAndWait();
+        if(result.get() == ButtonType.OK)
+        {
+            System.out.println("Confirm 1 Accepted");
+            main.updateBackground(gibson_background);
+
+            // Media File and Player
+            Media mediaFile = new Media(getClass().getResource("sounds/StopCrying.wav").toExternalForm());
+            mediaPlayer = new MediaPlayer(mediaFile);
+            mediaPlayer.play();
+
+//            Optional<ButtonType> result2 = alert2.showAndWait();
+//            if(result2.get() == ButtonType.OK)
+//            {
+//                System.out.println("Confirm 2 Accepted");
+//                Optional<ButtonType> result3 = alert3.showAndWait();
+//                if(result3.get() == ButtonType.OK) {
+//                    System.out.println("Confirm 3 Accepted");
+//                }else {
+//                    System.out.println("Confirm 3 Denied");
+//                }
+//
+//            }else {
+//                System.out.println("Confirm 2 Denied");
+//            }
+
+        }else{
+            System.out.println("Confirm 1 Denied");
+        }
+
+        return alert1;
+    }
 
 }
 

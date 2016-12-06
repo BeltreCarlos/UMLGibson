@@ -3,29 +3,13 @@ package UMLEditor;
 import UMLEditor.controller.UmlController;
 import UMLEditor.model.UmlModel;
 import UMLEditor.view.UmlView;
-import UMLEditor.view.Display;
 import UMLEditor.view.Menu;
 import UMLEditor.view.Toolbox;
-//import editor.*;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ToolBar;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-//import UMLEditor.Controller.Controller;
-import javafx.scene.layout.Pane;
-import UMLEditor.view.Classbox;
-import UMLEditor.view.Menu;
-import javafx.event.EventHandler;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.StageStyle;
 
 /**
@@ -49,6 +33,7 @@ public class Main extends Application {
     public Scene scene;
     public Menu menu;
     public Toolbox toolbox;
+    private VBox nodeEditPanel;
 
     public static void main(String[] args) {
         launch(args);
@@ -57,38 +42,30 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-
         stage = primaryStage;
         stage.setTitle(UMLEditor.Main.title);
 
         // layout
         layout = new BorderPane();
         pane.setStyle(style.bgColor);
+        nodeEditPanel = createNodeEditPanel();
+
         layout.setCenter(pane);
+        layout.setLeft(nodeEditPanel);
 
-        // menu
+        layout.setStyle("-fx-background-color: transparent;");
+
         initMenu();
-
-        // scene
-        scene = new Scene(layout, this.width, this.height);
-
-        // controller
         controller = new UmlController(this);
 
-        // model
-        //model = new UmlModel(this);
+        scene = new Scene(layout, this.width, this.height);
+
 
         // set & show
         stage.setScene(scene);
         stage.show();
 
     }
-//    private void setLayout(){
-//        layout = new BorderPane();
-//        //pane = new Pane();
-//        pane.setStyle(style.bgColor);
-//        layout.setCenter(pane);
-//    }
 
     public void updateBackground(String s){
         this.pane.setStyle(s);
@@ -106,6 +83,20 @@ public class Main extends Application {
 //    private void initToolbox(){
 //        toolbox = new Toolbox(this);
 //    }
+
+    private VBox createNodeEditPanel()
+    {
+        VBox vBox = new VBox();
+        vBox.setPrefWidth(60.0);
+        vBox.setPrefHeight(Double.MAX_VALUE);
+        vBox.setStyle(style.bgColor);
+
+        return vBox;
+    }
+
+    public VBox getCurrentlySelectedPanel() {
+        return nodeEditPanel;
+    }
 
 
 }

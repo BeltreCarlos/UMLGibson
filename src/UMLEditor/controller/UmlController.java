@@ -242,10 +242,23 @@ public class UmlController {
             }
         });
 
+        model.getCurrentlySelectedNodeProperty().addListener((ObservableValue<? extends Node> ov, Node last_selected,
+                                                              Node new_selected) ->
+        {
+            if (last_selected instanceof Classbox)
+            {
+                ((Classbox) last_selected).removeActions();
+            }
+
+            if (new_selected instanceof NodeEditMenu) {
+                ((NodeEditMenu) new_selected).generatePanel(main.getCurrentlySelectedPanel());
+            }
+
+        });
+
     }
 
     //--------------------------------------------------------------------------------------------------------------
-
 
     /**
      * Checks if what you clicked on is the pane

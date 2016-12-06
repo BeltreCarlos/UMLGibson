@@ -14,6 +14,9 @@ public class Images extends ImageView {
     private final Image dependency = new Image(getClass().getResourceAsStream("images/Dependency.png"));
     private final Image generalization = new Image(getClass().getResourceAsStream("images/Generalization.png"));
     private final Image implementation = new Image(getClass().getResourceAsStream("images/Implementation.png"));
+    private final Image editBox1 = new Image(getClass().getResourceAsStream("images/editbox1.png"));
+    private final Image editBox2 = new Image(getClass().getResourceAsStream("images/editbox2.png"));
+    private final Image editBox3 = new Image(getClass().getResourceAsStream("images/editbox3.png"));
 
     public Image getClassbox(){return this.classbox;}
 
@@ -28,4 +31,11 @@ public class Images extends ImageView {
     public Image getGeneralization(){return this.generalization;}
 
     public Image getImplementation(){return this.implementation;}
+
+    public Image getEditBox1(){return this.editBox1;}
+
+    public Image getEditBox2(){return this.editBox2;}
+
+    public Image getEditBox3(){return this.editBox3;}
+
 }
