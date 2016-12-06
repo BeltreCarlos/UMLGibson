@@ -6,9 +6,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Toggle;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import UMLEditor.view.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
@@ -46,6 +48,7 @@ public class UmlController {
                         case SELECT:
                             setSelectState();
                             break;
+
                         case CLASSBOX:
                             setClassBoxState();
                             break;
@@ -149,6 +152,10 @@ public class UmlController {
                 Node selectedNode = event.getPickResult().getIntersectedNode();
                 Node filteredNode = checkIfPane(selectedNode);
 
+                DropShadow dropShadow = new DropShadow();
+                dropShadow.setColor(Color.YELLOW);
+                selectedNode.setEffect(dropShadow);
+
                 if(filteredNode != null)
                 {
                     model.getCurrentlySelectedNodeProperty().setValue(filteredNode);
@@ -242,10 +249,23 @@ public class UmlController {
             }
         });
 
+        model.getCurrentlySelectedNodeProperty().addListener((ObservableValue<? extends Node> ov, Node last_selected,
+                                                              Node new_selected) ->
+        {
+            if (last_selected instanceof Classbox)
+            {
+                ((Classbox) last_selected).removeActions();
+            }
+
+            if (new_selected instanceof NodeEditMenu) {
+                ((NodeEditMenu) new_selected).generatePanel(main.getCurrentlySelectedPanel());
+            }
+
+        });
+
     }
 
     //--------------------------------------------------------------------------------------------------------------
-
 
     /**
      * Checks if what you clicked on is the pane

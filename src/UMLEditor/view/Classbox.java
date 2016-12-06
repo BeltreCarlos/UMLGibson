@@ -2,22 +2,30 @@ package UMLEditor.view;
 
 import java.util.ArrayList;
 
+import UMLEditor.model.GibsonState;
 import UMLEditor.model.LineType;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.geometry.Point2D;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
  * Created by beltre on 9/21/16.
  */
-public class Classbox extends VBox implements Anchors {
+public class Classbox extends VBox implements Anchors, NodeEditMenu {
 
     private double orgX, orgY;
     private double height, width;
@@ -29,6 +37,9 @@ public class Classbox extends VBox implements Anchors {
     private TextArea classFunctions;
     private ArrayList<UmlLine> lines;
     private ArrayList<LineType> pointTypes;
+    private Images img = new Images();
+    private MediaPlayer mediaPlayer;
+    private GibsonState gibsonState = new GibsonState();
 
     public Classbox(double x, double y) {
         super();
@@ -41,6 +52,8 @@ public class Classbox extends VBox implements Anchors {
         pointTypes = new ArrayList<LineType>();
         lines = new ArrayList<UmlLine>();
         setCursor(Cursor.OPEN_HAND);
+        setStyle("-fx-border-style: solid; -fx-border-width: 1.5px;" +
+                "-fx-border-color: black;");
         setTranslateX(x);
         setTranslateY(y);
 
@@ -232,5 +245,183 @@ public class Classbox extends VBox implements Anchors {
     public void addLineType(LineType str){ pointTypes.add(str);}
 
 
+    public void applyActions(TextArea text)
+    {
+        text.requestFocus();
+        text.setEditable(true);
+        text.setMouseTransparent(false);
+        text.setStyle("-fx-background-color: red");
+    }
+
+    public void revertActions(TextArea text)
+    {
+        if(text == className)
+        {
+            classMethods.setEditable(false);
+            classMethods.setMouseTransparent(true);
+            classMethods.setStyle("-fx-background-color: white");
+            classFunctions.setEditable(false);
+            classFunctions.setMouseTransparent(true);
+            classFunctions.setStyle("-fx-background-color: white");
+        } else if(text == classMethods){
+            className.setEditable(false);
+            className.setMouseTransparent(true);
+            className.setStyle("-fx-background-color: white");
+            classFunctions.setEditable(false);
+            classFunctions.setMouseTransparent(true);
+            classFunctions.setStyle("-fx-background-color: white");
+        } else {
+            className.setEditable(false);
+            className.setMouseTransparent(true);
+            className.setStyle("-fx-background-color: white");
+            classMethods.setEditable(false);
+            classMethods.setMouseTransparent(true);
+            classMethods.setStyle("-fx-background-color: white");
+        }
+    }
+
+    public void removeActions()
+    {
+        revertActions(className);
+        revertActions(classMethods);
+        revertActions(classFunctions);
+        this.setEffect(null);
+
+    }
+
+    private void deleteSelf() {
+        Pane pane = (Pane) this.getParent();
+        int t = lines.size();
+        for (int i = t; i > 0; --i) {
+            lines.get(i-1).deleteSelf();
+        }
+        pane.getChildren().remove(this);
+
+        if(gibsonState.getGibsonState() == 1){
+            Media mediaFile = new Media(getClass().getResource("sounds/givemeback.wav").toExternalForm());
+            mediaPlayer = new MediaPlayer(mediaFile);
+            mediaPlayer.play();
+        }
+
+    }
+
+    @Override
+    public void generatePanel(VBox v)
+    {
+        v.getChildren().clear();
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setHeight(40.0);
+        dropShadow.setWidth(40.0);
+        //dropShadow.setColor(Color.RED);
+
+        Button editName = new Button();
+        editName.setMaxWidth(Double.MAX_VALUE);
+        VBox.setVgrow(editName, Priority.ALWAYS);
+        ImageView editNameImg = new ImageView(img.getEditBox1());
+        editNameImg.setFitHeight(45.0);
+        editNameImg.setFitWidth(Double.MAX_VALUE);
+        editNameImg.setPreserveRatio(true);
+        editName.setGraphic(editNameImg);
+        editName.setTooltip(new Tooltip("Edit Name"));
+        editName.setOnAction((ActionEvent e) ->
+        {
+            TextArea textArea = className;
+            applyActions(textArea);
+            revertActions(textArea);
+        });
+        editName.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event) { editName.setEffect(dropShadow); }
+        });
+        editName.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e) { editName.setEffect(null); }
+        });
+
+        Button editOps = new Button();
+        editName.setMaxWidth(Double.MAX_VALUE);
+        VBox.setVgrow(editOps, Priority.ALWAYS);
+        ImageView editOpsImg = new ImageView(img.getEditBox2());
+        editOpsImg.setFitHeight(45.0);
+        editOpsImg.setFitWidth(Double.MAX_VALUE);
+        editOpsImg.setPreserveRatio(true);
+        editOps.setGraphic(editOpsImg);
+        editOps.setTooltip(new Tooltip("Edit Operations"));
+        editOps.setOnAction((ActionEvent e) ->
+        {
+            TextArea textArea = classMethods;
+            applyActions(textArea);
+            revertActions(textArea);
+        });
+        editOps.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event) { editOps.setEffect(dropShadow); }
+        });
+        editOps.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e) { editOps.setEffect(null); }
+        });
+
+        Button editFuncs = new Button();
+        editFuncs.setMaxWidth(Double.MAX_VALUE);
+        VBox.setVgrow(editFuncs, Priority.ALWAYS);
+        ImageView editFuncsImg = new ImageView(img.getEditBox3());
+        editFuncsImg.setFitHeight(45.0);
+        editFuncsImg.setFitWidth(Double.MAX_VALUE);
+        editFuncsImg.setPreserveRatio(true);
+        editFuncs.setGraphic(editFuncsImg);
+        editFuncs.setTooltip(new Tooltip("Edit Functions"));
+        editFuncs.setOnAction((ActionEvent e) ->
+        {
+            TextArea textArea = classFunctions;
+            applyActions(textArea);
+            revertActions(textArea);
+        });
+        editFuncs.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event) { editFuncs.setEffect(dropShadow); }
+        });
+        editFuncs.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e) { editFuncs.setEffect(null); }
+        });
+
+        Button deleteB = new Button();
+        deleteB.setMaxWidth(Double.MAX_VALUE);
+        VBox.setVgrow(deleteB, Priority.ALWAYS);
+        ImageView deleteBImg = new ImageView(img.getDelete());
+        deleteBImg.setFitHeight(45.0);
+        deleteBImg.setFitWidth(Double.MAX_VALUE);
+        deleteBImg.setPreserveRatio(true);
+        deleteB.setGraphic(deleteBImg);
+        deleteB.setTooltip(new Tooltip("Delete Class"));
+        deleteB.setOnAction((ActionEvent e) -> {
+            deleteSelf();
+            v.getChildren().clear();
+        });
+        deleteB.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent e) {
+                        deleteB.setEffect(dropShadow);
+                    }
+                });
+        deleteB.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent e) {
+                        deleteB.setEffect(null);
+                    }
+                });
+
+        v.getChildren().addAll(editName, editOps, editFuncs, deleteB);
+
+    }
 
 }
