@@ -2,6 +2,7 @@ package UMLEditor.view;
 
 import java.util.ArrayList;
 
+import UMLEditor.model.GibsonState;
 import UMLEditor.model.LineType;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,6 +17,8 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.geometry.Point2D;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -35,6 +38,8 @@ public class Classbox extends VBox implements Anchors, NodeEditMenu {
     private ArrayList<UmlLine> lines;
     private ArrayList<LineType> pointTypes;
     private Images img = new Images();
+    private MediaPlayer mediaPlayer;
+    private GibsonState gibsonState = new GibsonState();
 
     public Classbox(double x, double y) {
         super();
@@ -291,6 +296,13 @@ public class Classbox extends VBox implements Anchors, NodeEditMenu {
             lines.get(i-1).deleteSelf();
         }
         pane.getChildren().remove(this);
+
+        if(gibsonState.getGibsonState() == 1){
+            Media mediaFile = new Media(getClass().getResource("sounds/givemeback.wav").toExternalForm());
+            mediaPlayer = new MediaPlayer(mediaFile);
+            mediaPlayer.play();
+        }
+
     }
 
     @Override

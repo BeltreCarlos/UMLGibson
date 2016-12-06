@@ -48,6 +48,7 @@ public class UmlController {
                         case SELECT:
                             setSelectState();
                             break;
+
                         case CLASSBOX:
                             setClassBoxState();
                             break;

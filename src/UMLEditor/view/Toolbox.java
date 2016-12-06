@@ -2,26 +2,20 @@ package UMLEditor.view;
 
 import UMLEditor.Main;
 import javafx.scene.control.*;
-import UMLEditor.view.Images;
 import UMLEditor.model.State;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
-import javafx.stage.StageStyle;
-import jdk.internal.org.objectweb.asm.util.TraceAnnotationVisitor;
+import UMLEditor.model.GibsonState;
 
-import java.io.File;
 import java.util.Optional;
 
 
@@ -46,6 +40,7 @@ public class Toolbox {
             "-fx-background-position: center center; " +
             "-fx-background-size: cover;";
     private String panelBackground = "-fx-background-color: #3598DB; ";
+    private GibsonState gibsonState = new GibsonState();
 
     public Toolbox(Main main) {
         stateToggle = new ToggleGroup();
@@ -104,6 +99,17 @@ public class Toolbox {
         tb2.setMaxWidth(Double.MAX_VALUE);
         tb2.setMaxHeight(Double.MAX_VALUE);
         vBox.setVgrow(tb2, Priority.ALWAYS);
+        tb2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+                if(gibsonState.getGibsonState() == 1) {
+                    Media mediaFile = new Media(getClass().getResource("sounds/no.wav").toExternalForm());
+                    mediaPlayer = new MediaPlayer(mediaFile);
+                    mediaPlayer.play();
+                }
+            }
+        });
 
         ToggleButton tb3 = new ToggleButton();
         tb3.setUserData(State.ASSOCIATION);
@@ -141,6 +147,7 @@ public class Toolbox {
         tb5.setMaxHeight(Double.MAX_VALUE);
         vBox.setVgrow(tb5, Priority.ALWAYS);
 
+
         ToggleButton tb6 = new ToggleButton();
         tb6.setUserData(State.DEPENDENCY);
         tb6.setToggleGroup(stateToggle);
@@ -152,6 +159,7 @@ public class Toolbox {
         tb6.setMaxWidth(Double.MAX_VALUE);
         tb6.setMaxHeight(Double.MAX_VALUE);
         vBox.setVgrow(tb6, Priority.ALWAYS);
+
 
         ToggleButton tb7 = new ToggleButton();
         tb7.setUserData(State.GENERALIZATION);
@@ -218,6 +226,8 @@ public class Toolbox {
             System.out.println("Confirm 1 Accepted");
             main.updateBackground(gibson_background);
             main.updatePanelBackground(panelBackground);
+            //gibsonState.setGibsonState(1);
+            gibsonState.currentState = 1;
 
             // Media File and Player
             Media mediaFile = new Media(getClass().getResource("sounds/StopCrying.wav").toExternalForm());
