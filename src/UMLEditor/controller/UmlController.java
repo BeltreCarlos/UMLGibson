@@ -81,6 +81,10 @@ public class UmlController {
                             setLineState();
                             break;
 
+                        default:
+                            //something went wrong
+                            break;
+
                     }
                 }
         );
