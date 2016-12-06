@@ -9,15 +9,15 @@ You are now using UMLGibson, a full-featured UML class diagram editor. You know 
 2. The Menu
 	2a. File: Here you can Save a diagram as a PDF, reset the diagram to a New diagram, and Exit the application.
 	2b. View: Here you can Toggle Toolbox.
-	2c. GibsonMode: Stop crying.
-	2d. Help: You’re currently reading the Help file! About will tell you more about us.
+	2c. Help: You’re currently reading the Help file! About will tell you more about us.
 
 3. The Toolbox
 The toolbox is the brawn of UMLGibson. It is the what makes it a UML diagram editor.
-	3a. Boxes: Click the box option and then again on the main canvas place a class box in that location.
+	3a. Select: Click to enter select mode. Will allow you to move boxes freely. Also will allow editing of class boxes' text fields, deleting of class boxes, and deleting of arrow.
+	3b. Boxes: Click the box option and then again on the main canvas place a class box in that location.
 		One type of box.
 		Click the Select tool to grab and move class boxes.
-	3b. Arrows: Click a relaionship arrow and then on two boxes to draw the arrow between the two automatically.
+	3c. Arrows: Click a relaionship arrow and then on two boxes to draw the arrow between the two automatically.
 		Different types:
 			Association: Standard arrow.
 			Aggregation: Open diamond at end of line.
@@ -30,7 +30,7 @@ The toolbox is the brawn of UMLGibson. It is the what makes it a UML diagram edi
 	You can move around boxes around the canvas as expected with the move tool. The canvas itself can be scrolled on. The Save function saves a screencap of it.
 
 4. Gibson Mode
-	No!!! We're not giving details.
+	No!!! We're not giving details. Stop crying.
 	
 5. License
 	That's a great question. Most of us have driver's licenses.
