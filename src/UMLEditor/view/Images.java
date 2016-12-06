@@ -17,6 +17,7 @@ public class Images extends ImageView {
     private final Image editBox1 = new Image(getClass().getResourceAsStream("images/editbox1.png"));
     private final Image editBox2 = new Image(getClass().getResourceAsStream("images/editbox2.png"));
     private final Image editBox3 = new Image(getClass().getResourceAsStream("images/editbox3.png"));
+    private final Image delete = new Image(getClass().getResourceAsStream("images/delete.png"));
 
     public Image getClassbox(){return this.classbox;}
 
@@ -37,5 +38,7 @@ public class Images extends ImageView {
     public Image getEditBox2(){return this.editBox2;}
 
     public Image getEditBox3(){return this.editBox3;}
+
+    public Image getDelete(){return this.delete;}
 
 }

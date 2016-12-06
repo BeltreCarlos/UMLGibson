@@ -6,9 +6,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Toggle;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import UMLEditor.view.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
@@ -148,6 +150,10 @@ public class UmlController {
             {
                 Node selectedNode = event.getPickResult().getIntersectedNode();
                 Node filteredNode = checkIfPane(selectedNode);
+
+                DropShadow dropShadow = new DropShadow();
+                dropShadow.setColor(Color.YELLOW);
+                selectedNode.setEffect(dropShadow);
 
                 if(filteredNode != null)
                 {

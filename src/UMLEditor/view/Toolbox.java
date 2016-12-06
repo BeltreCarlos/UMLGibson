@@ -45,6 +45,7 @@ public class Toolbox {
             "-fx-background-image: url('UMLEditor/view/images/braveheart_bkg.png'); " +
             "-fx-background-position: center center; " +
             "-fx-background-size: cover;";
+    private String panelBackground = "-fx-background-color: #3598DB; ";
 
     public Toolbox(Main main) {
         stateToggle = new ToggleGroup();
@@ -216,6 +217,7 @@ public class Toolbox {
         {
             System.out.println("Confirm 1 Accepted");
             main.updateBackground(gibson_background);
+            main.updatePanelBackground(panelBackground);
 
             // Media File and Player
             Media mediaFile = new Media(getClass().getResource("sounds/StopCrying.wav").toExternalForm());

@@ -34,6 +34,7 @@ public class Main extends Application {
     public Menu menu;
     public Toolbox toolbox;
     private VBox nodeEditPanel;
+    VBox vBox = new VBox();
 
     public static void main(String[] args) {
         launch(args);
@@ -86,7 +87,7 @@ public class Main extends Application {
 
     private VBox createNodeEditPanel()
     {
-        VBox vBox = new VBox();
+        //VBox vBox = new VBox();
         vBox.setPrefWidth(60.0);
         vBox.setPrefHeight(Double.MAX_VALUE);
         vBox.setStyle(style.bgColor);
@@ -96,6 +97,10 @@ public class Main extends Application {
 
     public VBox getCurrentlySelectedPanel() {
         return nodeEditPanel;
+    }
+
+    public void updatePanelBackground(String color){
+        this.vBox.setStyle(color);
     }
 
 

@@ -14,10 +14,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -50,6 +47,8 @@ public class Classbox extends VBox implements Anchors, NodeEditMenu {
         pointTypes = new ArrayList<LineType>();
         lines = new ArrayList<UmlLine>();
         setCursor(Cursor.OPEN_HAND);
+        setStyle("-fx-border-style: solid; -fx-border-width: 1.5px;" +
+                "-fx-border-color: black;");
         setTranslateX(x);
         setTranslateY(y);
 
@@ -281,10 +280,19 @@ public class Classbox extends VBox implements Anchors, NodeEditMenu {
         revertActions(className);
         revertActions(classMethods);
         revertActions(classFunctions);
+        this.setEffect(null);
 
     }
 
-    //**********
+    private void deleteSelf() {
+        Pane pane = (Pane) this.getParent();
+        int t = lines.size();
+        for (int i = t; i > 0; --i) {
+            lines.get(i-1).deleteSelf();
+        }
+        pane.getChildren().remove(this);
+    }
+
     @Override
     public void generatePanel(VBox v)
     {
@@ -298,7 +306,8 @@ public class Classbox extends VBox implements Anchors, NodeEditMenu {
         editName.setMaxWidth(Double.MAX_VALUE);
         VBox.setVgrow(editName, Priority.ALWAYS);
         ImageView editNameImg = new ImageView(img.getEditBox1());
-        editNameImg.setFitHeight(60.0);
+        editNameImg.setFitHeight(45.0);
+        editNameImg.setFitWidth(Double.MAX_VALUE);
         editNameImg.setPreserveRatio(true);
         editName.setGraphic(editNameImg);
         editName.setTooltip(new Tooltip("Edit Name"));
@@ -323,7 +332,8 @@ public class Classbox extends VBox implements Anchors, NodeEditMenu {
         editName.setMaxWidth(Double.MAX_VALUE);
         VBox.setVgrow(editOps, Priority.ALWAYS);
         ImageView editOpsImg = new ImageView(img.getEditBox2());
-        editOpsImg.setFitHeight(60.0);
+        editOpsImg.setFitHeight(45.0);
+        editOpsImg.setFitWidth(Double.MAX_VALUE);
         editOpsImg.setPreserveRatio(true);
         editOps.setGraphic(editOpsImg);
         editOps.setTooltip(new Tooltip("Edit Operations"));
@@ -348,7 +358,8 @@ public class Classbox extends VBox implements Anchors, NodeEditMenu {
         editFuncs.setMaxWidth(Double.MAX_VALUE);
         VBox.setVgrow(editFuncs, Priority.ALWAYS);
         ImageView editFuncsImg = new ImageView(img.getEditBox3());
-        editFuncsImg.setFitHeight(60.0);
+        editFuncsImg.setFitHeight(45.0);
+        editFuncsImg.setFitWidth(Double.MAX_VALUE);
         editFuncsImg.setPreserveRatio(true);
         editFuncs.setGraphic(editFuncsImg);
         editFuncs.setTooltip(new Tooltip("Edit Functions"));
@@ -369,11 +380,36 @@ public class Classbox extends VBox implements Anchors, NodeEditMenu {
             public void handle(MouseEvent e) { editFuncs.setEffect(null); }
         });
 
+        Button deleteB = new Button();
+        deleteB.setMaxWidth(Double.MAX_VALUE);
+        VBox.setVgrow(deleteB, Priority.ALWAYS);
+        ImageView deleteBImg = new ImageView(img.getDelete());
+        deleteBImg.setFitHeight(45.0);
+        deleteBImg.setFitWidth(Double.MAX_VALUE);
+        deleteBImg.setPreserveRatio(true);
+        deleteB.setGraphic(deleteBImg);
+        deleteB.setTooltip(new Tooltip("Delete Class"));
+        deleteB.setOnAction((ActionEvent e) -> {
+            deleteSelf();
+            v.getChildren().clear();
+        });
+        deleteB.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent e) {
+                        deleteB.setEffect(dropShadow);
+                    }
+                });
+        deleteB.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent e) {
+                        deleteB.setEffect(null);
+                    }
+                });
 
-        v.getChildren().addAll(editName, editOps, editFuncs);
+        v.getChildren().addAll(editName, editOps, editFuncs, deleteB);
 
     }
-    //**********
-
 
 }
